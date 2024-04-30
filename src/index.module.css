@@ -6,5 +6,29 @@
 
 body {
   background-color: #f1f1f1;
+  height: 100%;
+  margin: 0;
+}
+
+html {
+  height: 100vh;
+}
+
+label, input {
+  display: block;
+}
+
+input {
+  border: 2px solid #111;
+  font-size: 16px;
+  width: 100%;
+  padding: 7px;
+  border-radius: 5px;
+}
+
+label {
+  margin-bottom: 5px;
+  font-size: 18px;
+  font-weight: 400;
 }
 
