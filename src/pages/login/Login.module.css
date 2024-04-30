@@ -1,7 +1,7 @@
 .loginForm {
-    max-width: 400px;
-    margin: 0 auto;
-    flex-grow: 1;
+    width: 100%;
+    /* margin: 0 auto; */
+    /* flex-grow: 1; */
     padding: 20px;
     /* border: 1px solid #111; */
     border-radius: 5px;
@@ -13,6 +13,11 @@
     min-height: 100%;
     width: 100%;
     display: flex;
+    justify-content: center;
     align-items: center;
+}
+
+.logoFormContainer {
+    max-width: 450px;
 }
 
