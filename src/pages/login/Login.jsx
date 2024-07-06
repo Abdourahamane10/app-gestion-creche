@@ -1,7 +1,8 @@
 import Service from "./service/Service";
 import Entreprise from "./entreprise/Entreprise";
 import Logo from "./logo/Logo";
-import loginStyle from "./Login.module.css"
+import loginStyle from "./Login.module.css";
+import ConnexionBtn from "../../components/boutons/ConnexionBtn";
 
 export default function Login() {
   return (
@@ -11,6 +12,7 @@ export default function Login() {
         <form className={loginStyle.loginForm}>
           <Entreprise/>
           <Service/>
+          <ConnexionBtn/>
         </form>
       </div>
     </div>
