@@ -7,7 +7,7 @@ import ConnexionBtn from "../../components/boutons/ConnexionBtn";
 export default function Login() {
   return (
     <div className={loginStyle.loginContainer}>
-      <div className={loginStyle.logoFormContainer}>
+      <div className={loginStyle.loginFormContainer}>
         {/* <Logo/> */}
         <form className={loginStyle.loginForm}>
           <Entreprise/>

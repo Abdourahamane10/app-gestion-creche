@@ -2,11 +2,11 @@
     width: 100%;
     /* margin: 0 auto; */
     /* flex-grow: 1; */
-    padding: 20px;
+    /*padding: 20px;*/
     /* border: 1px solid #111; */
     border-radius: 5px;
     padding: 30px;
-    background-color: white;
+    /*background-color: white;*/
 }
 
 .loginContainer {
@@ -17,7 +17,7 @@
     align-items: center;
 }
 
-.logoFormContainer {
+.loginFormContainer {
     /*max-width: 450px;*/
     min-width: 450px;
 }
