@@ -3,7 +3,7 @@ export default function IdentifiantPersonnel() {
   return (
     <>
         <label htmlFor="identifiant_personnel">Identifiant</label>
-        <input id="identifiant_personnel" type="text" className={inputConnexionStyle.identifiant_personnel} placeholder="Identifiant personnel"/>
+        <input id="identifiant_personnel" type="text" className={inputConnexionStyle.identifiant_personnel} placeholder="Identifiant personnel..."/>
     </>
   )
 }
