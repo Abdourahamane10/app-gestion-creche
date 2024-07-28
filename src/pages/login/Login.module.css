@@ -22,3 +22,7 @@
     min-width: 450px;
 }
 
+.errorValidation {
+    color: red;
+}
+
