@@ -1,9 +1,14 @@
 import serviceStyle from "./Service.module.css"
-export default function Service() {
+import PropTypes from 'prop-types'
+export default function Service({codeServiceRef}) {
   return (
     <>
-    <label htmlFor="service">Code du service</label>
-    <input id="service" type="text" className={serviceStyle.serviceInput} placeholder="Code du service..." />
+    <label htmlFor="service" className={serviceStyle.labelService}>Code du service</label>
+    <input id="service" ref={codeServiceRef} type="text" className={serviceStyle.serviceInput} placeholder="Code du service..." />
     </>
   )
 }
+
+Service.propTypes = {
+  codeServiceRef: PropTypes.object.isRequired,
+};
