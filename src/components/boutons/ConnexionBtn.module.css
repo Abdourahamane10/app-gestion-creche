@@ -9,8 +9,16 @@
     display: inline-block;
     cursor: pointer;
     margin-top: 20px;
+    max-width: 150px;
 }
 
 .containerBtnConnexion {
     text-align: center;
+}
+
+.spinner {
+    width: 10%;
+    height: 10%;
+    object-fit: cover;
+    margin-right: 5px;
 }
