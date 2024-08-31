@@ -31,7 +31,7 @@ export default function LoginPersonnel() {
     const passwordPersonnelValue = passwordPersonnelRef.current.value;
     setIdentifiantPersonnel(identifiantPersonnelValue);
     setPasswordPersonnel(passwordPersonnelValue);
-    
+
     if(!identifiantPersonnelValue || !passwordPersonnelValue){
       return;
     }
@@ -83,7 +83,7 @@ export default function LoginPersonnel() {
         {(!identifiantPersonnel && formSubmited) && (<p className={loginPersonnelStyle.errorValidation}>Champ obligatoire!</p>)}
         <PasswordPersonnel passwordPersonnelRef={passwordPersonnelRef} />
         {(!passwordPersonnel && formSubmited) && (<p className={loginPersonnelStyle.errorValidation}>Champ obligatoire!</p>)}
-        <ConnexionBtn/>
+        <ConnexionBtn loading={infosConnexionAPIState.loading} />
         </form>
       </div>
     </div>
