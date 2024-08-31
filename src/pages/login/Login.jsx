@@ -5,6 +5,7 @@ import loginStyle from "./Login.module.css";
 import ConnexionBtn from "../../components/boutons/ConnexionBtn";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import indexStyle from "../../index.module.css"
 
 export default function Login() {
 
@@ -48,13 +49,24 @@ export default function Login() {
     })
     .then(response => {
       if(!response.ok){
-        throw Error(`${response.status}`)
+        if(response.status == 400){
+          throw Error("Identifiant de la société ou code du service manquant!");
+        }
+        else if(response.status == 401){
+          throw Error("Société inconnue!");
+        }
+        else if(response.status == 500){
+          throw Error("Echec de la connexion à la base de données!");
+        }
+        else {
+          throw Error(`${response.status}`);
+        }
       }
       return response.json();
     })
     .then(responseData => {
       setAPIState({loading: false, error: false, data: responseData});
-      navigate('/login', {state: {database: responseData.database, tableAuth: responseData.tableAuth}});
+      navigate('/login', {state: {database: responseData.data.database, tableAuth: responseData.data.tableAuth}});
     })
     .catch((erreur) => {
       setAPIState({loading: false, error: true, data: undefined})
@@ -66,7 +78,7 @@ export default function Login() {
     <div className={loginStyle.loginContainer}>
       <div className={loginStyle.loginFormContainer}>
         {/* <Logo/> */}
-        {APIState.error && (<p className={loginStyle.errorAppelApi}>{messageError}</p>)}
+        {APIState.error && (<p className={indexStyle.errorAppelApi}>{messageError}</p>)}
         <form className={loginStyle.loginForm} onSubmit={(e) => handleSubmit(e)}>
           <Entreprise identifiantEntrepriseRef={identifiantEntrepriseRef} />
           {(!identifiantEntreprise && isClickedSubmit) && (<p className={loginStyle.errorValidation}>Champ obligatoire!</p>)}
