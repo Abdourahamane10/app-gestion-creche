@@ -35,3 +35,14 @@ label {
 form {
   background-color: white;
 }
+
+.errorAppelApi {
+  margin-bottom: 10px;
+  text-align: center;
+  background-color: red;
+  color: white;
+  font-size: 18px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  width: 100%;
+}
