@@ -13,5 +13,5 @@ export default function ConnexionBtn({loading}) {
 }
 
 ConnexionBtn.propTypes = {
-  loading: PropTypes.shape({current: PropTypes.any}),
+  loading: PropTypes.bool,
 }
