@@ -54,7 +54,7 @@ export default function Login() {
     })
     .then(responseData => {
       setAPIState({loading: false, error: false, data: responseData});
-      navigate('/login', {state: {database: APIState.data?.database, tableAuth: APIState.data?.tableAuth}});
+      navigate('/login', {state: {database: responseData.database, tableAuth: responseData.tableAuth}});
     })
     .catch((erreur) => {
       setAPIState({loading: false, error: true, data: undefined})
