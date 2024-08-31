@@ -28,12 +28,11 @@ export default function Login() {
     //Vérification des champs s'ils sont renseignés avant d'appeler l'API
     const identifiantEntrepriseValue = identifiantEntrepriseRef.current.value;
     const codeServiceValue = codeServiceRef.current.value;
+    setIdentifiantEntreprise(identifiantEntrepriseValue);
+    setCodeService(codeServiceValue);
     if(!identifiantEntrepriseValue || !codeServiceValue){
       return;
     }
-
-    setIdentifiantEntreprise(identifiantEntrepriseValue);
-    setCodeService(codeServiceValue);
 
     setAPIState({...APIState, loading: true});
 
@@ -48,6 +47,7 @@ export default function Login() {
       }),
     })
     .then(response => {
+      console.log(response);
       if(!response.ok){
         if(response.status == 400){
           throw Error("Identifiant de la société ou code du service manquant!");
