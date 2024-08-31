@@ -4,6 +4,8 @@ import ConnexionBtn from "../../components/boutons/ConnexionBtn";
 import IdentifiantPersonnel from "./indentifiantPersonnel/IdentifiantPersonnel";
 import PasswordPersonnel from "./passwordPersonnel/PasswordPersonnel";
 import { useRef, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import indexStyle from "../../index.module.css"
 
 export default function LoginPersonnel() {
   const [identifiantPersonnel, setIdentifiantPersonnel] = useState("");
@@ -11,18 +13,71 @@ export default function LoginPersonnel() {
   const [formSubmited, setFormSubmited] = useState(false);
   const identifiantPersonnelRef = useRef();
   const passwordPersonnelRef = useRef();
+  const navigate = useNavigate();
+  const [messageError, setMessageError] = useState("");
+  const [infosConnexionAPIState, setInfosConnexionAPIState] = useState({
+    loading: false,
+    error: false,
+    data: undefined
+  });
+
+  const location = useLocation();
+  const dataNavigationUrl = location.state || {};
 
   function handleSubmit(e){
     e.preventDefault();
-    setIdentifiantPersonnel(identifiantPersonnelRef.current.value);
-    setPasswordPersonnel(passwordPersonnelRef.current.value);
     setFormSubmited(true);
+    const identifiantPersonnelValue = identifiantPersonnelRef.current.value;
+    const passwordPersonnelValue = passwordPersonnelRef.current.value;
+    setIdentifiantPersonnel(identifiantPersonnelValue);
+    setPasswordPersonnel(passwordPersonnelValue);
+    
+    if(!identifiantPersonnelValue || !passwordPersonnelValue){
+      return;
+    }
+    setInfosConnexionAPIState({...infosConnexionAPIState, loading: true});
+
+    fetch("http://127.0.0.1:8000/api/login", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: identifiantPersonnelValue,
+        password: passwordPersonnelValue,
+        database: dataNavigationUrl.database,
+        tableAuth: dataNavigationUrl.tableAuth
+      })
+    })
+    .then(response => {
+      if(!response.ok){
+        if(response.status == 400){
+          throw Error("Email ou mot de passe incorrect!");
+        }
+        else if(response.status == 401){
+          throw Error("Utilisateur inconnu!");
+        }
+        else {
+          throw Error(`${response.status}`);
+        }
+      }
+      return response.json();
+    })
+    .then(responseData => {
+      setInfosConnexionAPIState({loading: false, error: false, data: responseData});
+      navigate('/accueil');
+    })
+    .catch(erreur => {
+      setInfosConnexionAPIState({loading: false, error: true, data: undefined});
+      setMessageError(erreur.message);
+    })
   }
 
   return (
     <div className={loginPersonnelStyle.loginContainer}>
       <div className={loginPersonnelStyle.loginFormContainer}>
         <Logo/>
+        {infosConnexionAPIState.error && (<p className={indexStyle.errorAppelApi}>{messageError}</p>)}
         <form className={loginPersonnelStyle.loginForm} onSubmit={(e) => handleSubmit(e)}>
         <IdentifiantPersonnel identifiantPersonnelRef={identifiantPersonnelRef} />
         {(!identifiantPersonnel && formSubmited) && (<p className={loginPersonnelStyle.errorValidation}>Champ obligatoire!</p>)}
