@@ -1,6 +1,6 @@
 import Logo from "./logo/Logo";
 import loginPersonnelStyle from "./LoginPersonnel.module.css"
-import ConnexionBtn from "../../components/boutons/ConnexionBtn";
+import ConnexionBtn from "../../components/boutons/connexionBtn/ConnexionBtn";
 import IdentifiantPersonnel from "./indentifiantPersonnel/IdentifiantPersonnel";
 import PasswordPersonnel from "./passwordPersonnel/PasswordPersonnel";
 import { useRef, useState } from "react";
