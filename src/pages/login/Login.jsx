@@ -2,7 +2,7 @@ import Service from "./service/Service";
 import Entreprise from "./entreprise/Entreprise";
 //import Logo from "./logo/Logo";
 import loginStyle from "./Login.module.css";
-import ConnexionBtn from "../../components/boutons/ConnexionBtn";
+import ConnexionBtn from "../../components/boutons/connexionBtn/ConnexionBtn";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import indexStyle from "../../index.module.css"
