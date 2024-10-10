@@ -46,3 +46,13 @@ form {
   border-radius: 5px;
   width: 100%;
 }
+
+button {
+  padding: 7px 10px;
+  border-radius: 4px;
+  border: 2px solide #111;
+  font-size: 16px;
+  font-weight: 300;
+  cursor: pointer;
+  max-width: 150px;
+}
