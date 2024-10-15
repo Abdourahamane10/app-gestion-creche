@@ -1,0 +1,37 @@
+.headerPrincipal {
+    background-color: dodgerblue;
+    width: 100%;
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+    padding: 15px 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.toggler_container button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px;
+}
+
+.toggler_container img {
+    width: 18px;
+}
+
+.sections_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sections_container a {
+    text-decoration: none;
+    color: #f1f1f1;
+    display: block;
+    margin-right: 20px;
+    font-size: 18px;
+    font-weight: 600;
+}
