@@ -1,0 +1,10 @@
+.home_container {
+  min-height: 100%;
+  background-color: red;
+  position: relative;
+  padding: 100px;
+}
+
+.presentation_container, .pedagogique_container, .reglement_container {
+  padding-bottom: 30px;
+}
