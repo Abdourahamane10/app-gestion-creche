@@ -1,0 +1,28 @@
+.sideBar {
+    padding: 30px;
+    position: fixed;
+    overflow: auto;
+    left: 0;
+    top: 70px;
+    width: 240px;
+    background-color: aqua;
+    height: calc(100vh - 70px - 50px);
+}
+
+.item_prof {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.item_prof img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.item_prof a {
+    text-decoration: none;
+    color: #333;
+}
