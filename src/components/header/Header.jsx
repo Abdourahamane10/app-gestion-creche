@@ -1,9 +1,11 @@
 import DeconnexionBtn from "../boutons/deconnexionBtn/DeconnexionBtn"
+import SideBar from "../sideBar/SideBar"
 import headerStyle from "./Header.module.css"
 export default function Header() {
   return (
     <>
     <header className={headerStyle.headerPrincipal}>
+        <SideBar />
         <div className={headerStyle.toggler_container}>
             <button>
                 <img src="logos/menu.svg" alt="toggle menu" />
