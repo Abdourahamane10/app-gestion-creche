@@ -37,3 +37,14 @@
     font-size: 18px;
     font-weight: 600;
 }
+
+@media (min-width: 344px) and (max-width: 767px) {
+    .sections_container a {
+        margin-right: 15px;
+        font-size: 14px;
+    }
+    .headerPrincipal .toggler_container {
+        margin-right: 10px;
+    }
+}
+
