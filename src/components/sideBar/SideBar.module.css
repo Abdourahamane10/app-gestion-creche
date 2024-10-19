@@ -1,12 +1,10 @@
 .sideBar {
-    padding: 30px;
     position: fixed;
     overflow: auto;
     left: 0;
     top: 70px;
-    width: 240px;
-    background-color: aqua;
     height: calc(100vh - 70px - 50px);
+    background-color: grey;
 }
 
 .item_prof {
@@ -24,5 +22,71 @@
 
 .item_prof a {
     text-decoration: none;
-    color: #333;
+    color: #f1f1f1;
 }
+
+@media (max-width: 767px) {
+    /* Styles spécifiques pour les téléphones en mode paysage */
+    .sideBar {
+        width: 100vw;
+        padding: 15px;
+        position: fixed;
+        overflow: auto;
+        left: 0;
+        top: 70px;
+        max-height: 140px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 2px solid rgba(34, 34, 34, 0.5);
+    }
+    .item_prof {
+        margin-right: 15px;
+    }
+}
+
+@media (width: 768px) {
+    /* Styles spécifiques pour les téléphones en mode paysage */
+    .sideBar {
+        width: 130px;
+        padding: 15px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* Styles spécifiques pour les tablettes en mode portrait */
+    .sideBar {
+        width: 160px;
+        padding: 20px;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+    /* Styles spécifiques pour les tablettes en mode paysage */
+    .sideBar {
+        width: 190px;
+        padding: 25px;
+    }
+}
+
+@media (min-width: 1281px) and (max-width: 1440px) {
+    /* Styles spécifiques pour les petits ordinateurs portables */
+    .sideBar {
+        width: 220px;
+        padding: 30px;
+    }
+}
+
+@media (min-width: 1441px) {
+    /* Styles spécifiques pour les grands écrans d'ordinateur */
+    .sideBar {
+        width: 250px;
+        padding: 30px;
+    }
+}
+  
+  
+  
+  
+  
+  
