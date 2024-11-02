@@ -48,3 +48,9 @@
     }
 }
 
+@media (min-width: 768px) {
+    .toggler_container img {
+        width: 25px;
+    }
+}
+
