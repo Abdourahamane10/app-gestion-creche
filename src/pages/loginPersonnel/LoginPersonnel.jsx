@@ -69,11 +69,15 @@ export default function LoginPersonnel() {
     })
     .then(responseData => {
       setInfosConnexionAPIState({loading: false, error: false, data: responseData});
-      if(responseData.data.access_token){
+      if(responseData.data.access_token && responseData.data.code_user){
         const token = responseData.data.access_token;
-        dispatch(loginReducer(token));
+        const codeUser = responseData.date.codeUser;
+        dispatch(loginReducer({token, codeUser}));
+        navigate('/accueil');
       }
-      navigate('/accueil');
+      else {
+        navigate('/');
+      }
     })
     .catch(erreur => {
       setInfosConnexionAPIState({loading: false, error: true, data: undefined});
