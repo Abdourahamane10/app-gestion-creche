@@ -8,7 +8,7 @@ export default function Header() {
         <SideBar />
         <div className={headerStyle.toggler_container}>
             <button>
-                <img src="logos/menu.svg" alt="toggle menu" />
+                <img src="icones/envelope-icon.jpg" alt="toggle menu" />
             </button>
         </div>
         <div className={headerStyle.sections_container}>
