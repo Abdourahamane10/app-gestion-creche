@@ -56,3 +56,10 @@ button {
   cursor: pointer;
   max-width: 150px;
 }
+
+.spinner {
+  width: 10%;
+  height: 10%;
+  object-fit: cover;
+  margin-right: 5px;
+}
