@@ -12,9 +12,18 @@ export default function Header() {
             </button>
         </div>
         <div className={headerStyle.sections_container}>
-          <a href="#">Section1</a>
-          <a href="#">Section2</a>
-          <a href="#">Section3</a>
+          <a href="#">
+            <span className={headerStyle.sectionName}>Section1</span>
+            <span className={headerStyle.sectionCount}>12</span>
+          </a>
+          <a href="#">
+            <span className={headerStyle.sectionName}>Section2</span>
+            <span className={headerStyle.sectionCount}>20</span>
+          </a>
+          <a href="#">
+            <span className={headerStyle.sectionName}>Section3</span>
+            <span className={headerStyle.sectionCount}>15</span>
+          </a>
         </div>
         <DeconnexionBtn />
     </header>
