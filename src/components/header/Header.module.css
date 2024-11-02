@@ -32,10 +32,15 @@
 .sections_container a {
     text-decoration: none;
     color: #f1f1f1;
-    display: block;
+    display:flex;
+    flex-direction: column;
     margin-right: 20px;
     font-size: 18px;
     font-weight: 600;
+}
+
+.sectionCount {
+    text-align: center;
 }
 
 @media (min-width: 344px) and (max-width: 767px) {
