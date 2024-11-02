@@ -10,4 +10,24 @@
     .deconnexionBtn {
         font-size: 12px;
     } 
+    .message_error_api {
+        font-size: 12px;
+    }
+}
+
+@media (width: 360px){
+    .message_error_api {
+        margin: 0;
+    }
+}
+
+.message_error_api {
+    color: red;
+    margin: 2px 0;
+    text-align: center;
+}
+
+.deconnexionContainer {
+    display: flex;
+    flex-direction: column;
 }
