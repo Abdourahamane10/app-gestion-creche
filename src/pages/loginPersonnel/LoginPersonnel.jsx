@@ -5,6 +5,9 @@ import IdentifiantPersonnel from "./indentifiantPersonnel/IdentifiantPersonnel";
 import PasswordPersonnel from "./passwordPersonnel/PasswordPersonnel";
 import { useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import { loginReducer } from "../../features/authSlice";
 import indexStyle from "../../index.module.css"
 
 export default function LoginPersonnel() {
@@ -20,6 +23,7 @@ export default function LoginPersonnel() {
     error: false,
     data: undefined
   });
+  const dispatch = useDispatch();
 
   const location = useLocation();
   const dataNavigationUrl = location.state || {};
@@ -65,6 +69,10 @@ export default function LoginPersonnel() {
     })
     .then(responseData => {
       setInfosConnexionAPIState({loading: false, error: false, data: responseData});
+      if(responseData.data.access_token){
+        const token = responseData.data.access_token;
+        dispatch(loginReducer(token));
+      }
       navigate('/accueil');
     })
     .catch(erreur => {
