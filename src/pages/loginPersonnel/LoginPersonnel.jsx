@@ -71,7 +71,7 @@ export default function LoginPersonnel() {
       setInfosConnexionAPIState({loading: false, error: false, data: responseData});
       if(responseData.data.access_token && responseData.data.code_user){
         const token = responseData.data.access_token;
-        const codeUser = responseData.date.codeUser;
+        const codeUser = responseData.data.code_user;
         dispatch(loginReducer({token, codeUser}));
         navigate('/accueil');
       }
