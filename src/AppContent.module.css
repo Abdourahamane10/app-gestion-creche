@@ -1,0 +1,57 @@
+.home_container {
+    min-height: 100%;
+    position: relative;
+    /* padding: 100px; */
+  }
+  
+  .main_container {
+    margin: 0 auto;
+  }
+  
+  @media (max-width: 480px) {
+    /* Styles spécifiques pour les téléphones en mode portrait */
+    .main_container {
+      max-width: 300px;
+      padding: calc(70px + 170px) 20px 50px;
+    }
+  }
+  
+  @media (min-width: 481px) and (max-width: 767px) {
+    /* Styles spécifiques pour les téléphones en mode paysage */
+    .main_container {
+      max-width: 400px;
+      padding: calc(70px + 170px) 20px 50px;
+    }
+  }
+  
+  @media (min-width: 768px) and (max-width: 1024px) {
+    /* Styles spécifiques pour les tablettes en mode portrait */
+    .main_container {
+      max-width: 500px;
+      padding: calc(70px + 70px) 30px 60px;
+    }
+  }
+  
+  @media (min-width: 1025px) and (max-width: 1280px) {
+    /* Styles spécifiques pour les tablettes en mode paysage */
+    .main_container {
+      max-width: 700px;
+      padding: calc(70px + 70px) 40px 70px;
+    }
+  }
+  
+  @media (min-width: 1281px) and (max-width: 1440px) {
+    /* Styles spécifiques pour les petits ordinateurs portables */
+    .main_container {
+      max-width: 800px;
+      padding: calc(70px + 70px) 50px 80px;
+    }
+  }
+  
+  @media (min-width: 1441px) {
+    /* Styles spécifiques pour les grands écrans d'ordinateur */
+    .main_container {
+      max-width: 900px;
+      padding: calc(70px + 70px) 60px 90px;
+    }
+  }
