@@ -12,6 +12,7 @@ export default function Header() {
             </button>
         </div>
         <div className={headerStyle.sections_container}>
+          {/* On utilisera <Link to="url"> au lieu des <a></a> pour éviter les rechargement de la page */}
           <a href="#">
             <span className={headerStyle.sectionName}>Section1</span>
             <span className={headerStyle.sectionCount}>12</span>
