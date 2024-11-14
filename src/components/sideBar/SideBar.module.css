@@ -8,8 +8,17 @@
 }
 
 .item_prof {
-    text-align: center;
     margin-bottom: 10px;
+}
+
+.item_direction {
+    margin-bottom: 15px;
+    border: 1px solid #f1f1f1;
+    border-radius: 5px;
+}
+
+.item_prof, .item_direction {
+    text-align: center;
 }
 
 .item_prof img {
@@ -20,7 +29,7 @@
     text-align: center;
 }
 
-.item_prof a {
+.item_prof a, .item_direction a {
     text-decoration: none;
     color: #f1f1f1;
 }
@@ -40,7 +49,7 @@
         align-items: center;
         border-bottom: 2px solid rgba(34, 34, 34, 0.5);
     }
-    .item_prof {
+    .item_prof, .item_direction {
         margin-right: 15px;
     }
 }
