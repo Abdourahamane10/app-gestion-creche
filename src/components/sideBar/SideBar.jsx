@@ -26,6 +26,11 @@ export default function SideBar() {
           Évènements
         </Link>
       </div>
+      <div className={sideBarStyle.item_direction}>
+        <Link to="#">
+          Gestion des sections
+        </Link>
+      </div>
         </>
     ) : (
       <>
