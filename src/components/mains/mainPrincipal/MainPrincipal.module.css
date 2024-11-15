@@ -1,4 +1,15 @@
 .presentation_container, .pedagogique_container, .reglement_container {
-    margin-bottom: 30px;
-  }
+    margin-bottom: 40px;
+}
+
+.presentation_container .btnModifier, .pedagogique_container .btnModifier, .reglement_container .btnModifier  {
+  background-color: var(--success-color);
+  color: var(--light-color);
+  margin-top: 20px;
+  margin-left: auto;
+}
+
+.btnModifierContainer {
+  display: flex;
+}
   
