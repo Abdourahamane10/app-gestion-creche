@@ -4,10 +4,13 @@ import { useSelector } from "react-redux"
 import Login from "./pages/login/Login"
 import LoginPersonnel from "./pages/loginPersonnel/LoginPersonnel"
 import HomeProfessionnel from "./pages/professionnel/HomeProfessionnel"
-import HomeDirection from "./pages/direction/HomeDirection"
+import HomeDirection from "./pages/direction/home/HomeDirection"
 import appContentStyle from "./AppContent.module.css"
 import Header from "./components/header/Header"
 import Footer from "./components/footer/Footer"
+import UpdatePresentation from "./pages/direction/presentation/UpdatePresentation"
+import UpdateProjetPedagogique from "./pages/direction/projetPedagogique/UpdateProjetPedagogique"
+import UpdateReglement from "./pages/direction/reglement/UpdateReglement"
 
 export default function AppContent() {
     const codeUser = useSelector(state => state.auth.codeUser);
@@ -32,6 +35,9 @@ export default function AppContent() {
               <Route path="/" element={<Login/>}/>
               <Route path="/login" element={<LoginPersonnel/>}/>
               <Route path="/accueil" element={((codeUser == "DR" || codeUser == "DA") && (<HomeDirection />)) || ((codeUser == "AP" || codeUser == "IN" || codeUser == "EJ" || codeUser == "AE") && (<HomeProfessionnel />))} />
+              <Route path="updatePresentation" element={<UpdatePresentation />} />
+              <Route path="updateProjetPedagogique" element={<UpdateProjetPedagogique />} />
+              <Route path="updateReglement" element={<UpdateReglement />} />
             </Routes>
           </main>
           <Footer />
