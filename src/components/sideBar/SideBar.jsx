@@ -13,7 +13,7 @@ export default function SideBar() {
         <>
         <div className={sideBarStyle.item_direction}>
         <Link to="#">
-          Menus
+          Admin
         </Link>
       </div>
       <div className={sideBarStyle.item_direction}>
@@ -28,7 +28,7 @@ export default function SideBar() {
       </div>
       <div className={sideBarStyle.item_direction}>
         <Link to="#">
-          Gestion des sections
+          Menus
         </Link>
       </div>
         </>
