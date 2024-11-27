@@ -11,7 +11,7 @@ export const textesAdminSlice = createSlice({
     initialState,
     reducers: {
         presentationReducer: (state, action) => {
-            const {presentationTexte} = action.payload;
+            const presentationTexte = action.payload;
             state.presentationTexte = presentationTexte;
         },
         projetPedagogiqueReducer: (state, action) => {
