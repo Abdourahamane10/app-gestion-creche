@@ -15,11 +15,11 @@ export const textesAdminSlice = createSlice({
             state.presentationTexte = presentationTexte;
         },
         projetPedagogiqueReducer: (state, action) => {
-            const {projetPedagogiqueTexte} = action.payload;
+            const projetPedagogiqueTexte = action.payload;
             state.projetPedagogiqueTexte = projetPedagogiqueTexte;
         },
         reglementReducer: (state, action) => {
-            const {reglementTexte} = action.payload;
+            const reglementTexte = action.payload;
             state.reglementTexte = reglementTexte;
         }
     }
