@@ -51,7 +51,7 @@ export default function UpdateProjetPedagogique() {
         setMessageToDisplay("");
       }, 7000);
     })
-  }, []);
+  });
 
   function handleSubmit(e) {
     e.preventDefault();
