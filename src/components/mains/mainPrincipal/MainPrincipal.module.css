@@ -12,4 +12,8 @@
 .btnModifierContainer {
   display: flex;
 }
+
+.presentation_container h2, .pedagogique_container h2, .reglement_container h2 {
+  margin-bottom: 10px;
+}
   
