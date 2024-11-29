@@ -14,7 +14,7 @@ export default function UpdatePresentation() {
 
   const [messageToDisplay, setMessageToDisplay] = useState("");
 
-  const [APIState, setAPIState] = useState({
+  const [PATCHAPIState, setPATCHAPIState] = useState({
     loading: false,
     error: false,
     data: undefined
@@ -51,12 +51,12 @@ export default function UpdatePresentation() {
         setMessageToDisplay("");
       }, 5000);
     })
-  }, []);
+  });
 
 
   function handleSubmit(event) {
     event.preventDefault();
-    setAPIState({...APIState, loading: true})
+    setPATCHAPIState({...PATCHAPIState, loading: true})
     fetch("http://127.0.0.1:8000/api/parametresGeneraux/1",{
       method: "PATCH",
       headers: {
@@ -83,14 +83,14 @@ export default function UpdatePresentation() {
       setTimeout(() => {
         setMessageToDisplay("");
       }, 5000);
-      setAPIState({loading: false, error: false, data: responseData});
+      setPATCHAPIState({loading: false, error: false, data: responseData});
     })
     .catch(erreur => {
       setMessageToDisplay(erreur.message);
       setTimeout(() => {
         setMessageToDisplay("");
       }, 5000);
-      setAPIState({loading: false, error: true, data: undefined});
+      setPATCHAPIState({loading: false, error: true, data: undefined});
     })
   }
 
@@ -102,7 +102,7 @@ export default function UpdatePresentation() {
         <textarea id="presentation" ref={presentationTextareaRef} defaultValue={presentationTexte}></textarea>
         </div>
         <button className={textesAdminStyle.btnModifier}>
-          {APIState.loading && (<img className={indexStyle.spinner} src="/icones/spinner.svg" />)}
+          {PATCHAPIState.loading && (<img className={indexStyle.spinner} src="/icones/spinner.svg" />)}
           Modifier
         </button>
       </form>
