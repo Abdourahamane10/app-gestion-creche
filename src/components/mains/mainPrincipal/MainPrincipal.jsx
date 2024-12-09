@@ -24,6 +24,8 @@ export default function MainPrincipal() {
     data: undefined
   });
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     setAPIState(prevState => ({ ...prevState, loading: true }));
     fetch("http://127.0.0.1:8000/api/parametresGeneraux/1",{
@@ -35,6 +37,9 @@ export default function MainPrincipal() {
     })
     .then(response => {
       if(!response.ok) {
+        if(response.status === 401){
+          navigate('/');
+        }
         return response.json().then(messageError => {
           throw Error(messageError.message || messageError.error || "Erreur inattendu");
         });
@@ -58,11 +63,9 @@ export default function MainPrincipal() {
         setMessageToDisplay("");
       }, 7000);
     })
-  }, [dispatch, token]);
+  }, [dispatch, token, navigate]);
 
   const codeUser = useSelector(state => state.auth.codeUser);
-
-  const navigate = useNavigate();
 
   function handleClickBtnModifierPresentation(){
     navigate('/updatePresentation');
