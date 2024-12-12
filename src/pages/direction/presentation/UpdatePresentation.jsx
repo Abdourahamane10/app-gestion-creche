@@ -21,6 +21,12 @@ export default function UpdatePresentation() {
     data: undefined
   });
 
+  const [GETAPIState, setGETAPIState] = useState({
+    loading: false,
+    error: false,
+    data: undefined
+  });
+
   const token = useSelector(state => state.auth.token);
 
   const navigate = useNavigate();
@@ -29,7 +35,8 @@ export default function UpdatePresentation() {
 
   //Mise à jour du state presentationTexte après le chargement du composant
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/parametresGeneraux/1",{
+    setGETAPIState({loading: true, error: false, data: undefined});
+    fetch("http://127.0.0.1:8000/api/parametresGeneraux",{
       method: "GET",
       headers: {
         'Content-Type': 'application/json',
@@ -48,16 +55,18 @@ export default function UpdatePresentation() {
       return response.json();
     })
     .then(responseData => {
-      const text_presentation = responseData.data.texte_presentation;
+      const text_presentation = responseData.data[0].presentation;
       dispatch(presentationReducer(text_presentation));
+      setGETAPIState({loading: false, error: false, data: responseData});
     })
     .catch(erreur => {
       setMessageToDisplay(erreur.message);
       setTimeout(() => {
         setMessageToDisplay("");
       }, 5000);
+      setGETAPIState({loading: false, error: true, data: undefined});
     })
-  });
+  }, [token, dispatch, navigate]);
 
 
   function handleSubmit(event) {
@@ -82,7 +91,7 @@ export default function UpdatePresentation() {
       return response.json();
     })
     .then(responseData => {
-      const text_presentation = responseData.data.texte_presentation;
+      const text_presentation = responseData.data[0].presentation;
       dispatch(presentationReducer(text_presentation));
       setMessageToDisplay(responseData.message);
       setSuccessMessage(true);
@@ -105,7 +114,9 @@ export default function UpdatePresentation() {
       <form onSubmit={handleSubmit}>
         <div>
         <label htmlFor="presentation">Modifier le texte de présentation de la crèche</label>
-        <textarea id="presentation" ref={presentationTextareaRef} defaultValue={presentationTexte}></textarea>
+        {GETAPIState.loading ? (<img className={indexStyle.spinner} src="/icones/spinner.svg" />) : 
+        (<textarea id="presentation" ref={presentationTextareaRef} defaultValue={presentationTexte}></textarea>)
+        } 
         </div>
         <button className={textesAdminStyle.btnEnregistrer}>
           {PATCHAPIState.loading && (<img className={indexStyle.spinner} src="/icones/spinner.svg" />)}
