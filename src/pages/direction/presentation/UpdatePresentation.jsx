@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import textesAdminStyle from "../textesAdmin.module.css";
 import { presentationReducer } from "../../../features/textesAdminSlice";
 import indexStyle from "../../../index.module.css";
+import { useNavigate } from "react-router-dom";
 
 export default function UpdatePresentation() {
   const presentationTexte = useSelector(state => state.textesAdmin.presentationTexte);
@@ -22,6 +23,8 @@ export default function UpdatePresentation() {
 
   const token = useSelector(state => state.auth.token);
 
+  const navigate = useNavigate();
+
   const [successMessage, setSuccessMessage] = useState(false);
 
   //Mise à jour du state presentationTexte après le chargement du composant
@@ -35,6 +38,9 @@ export default function UpdatePresentation() {
     })
     .then(response => {
       if(!response.ok){
+        if(response.status === 401) {
+          navigate('/');
+        }
         return response.json().then(messageError => {
           throw Error(messageError.message || messageError.error || "Erreur inattendu");
         });
@@ -101,9 +107,9 @@ export default function UpdatePresentation() {
         <label htmlFor="presentation">Modifier le texte de présentation de la crèche</label>
         <textarea id="presentation" ref={presentationTextareaRef} defaultValue={presentationTexte}></textarea>
         </div>
-        <button className={textesAdminStyle.btnModifier}>
+        <button className={textesAdminStyle.btnEnregistrer}>
           {PATCHAPIState.loading && (<img className={indexStyle.spinner} src="/icones/spinner.svg" />)}
-          Modifier
+          Enregistrer
         </button>
       </form>
       {messageToDisplay != "" && (<p style={{ color: `${successMessage ? "green" : "red"}`, padding: 10 }}>{messageToDisplay}</p>)}
