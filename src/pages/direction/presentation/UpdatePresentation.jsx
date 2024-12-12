@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useRef, useState } from "react";
 
 import textesAdminStyle from "../textesAdmin.module.css";
-import { presentationReducer } from "../../../features/textesAdminSlice";
+import { presentationReducer, idReducer } from "../../../features/textesAdminSlice";
 import indexStyle from "../../../index.module.css";
 import { useNavigate } from "react-router-dom";
 
@@ -58,7 +58,9 @@ export default function UpdatePresentation() {
     })
     .then(responseData => {
       const text_presentation = responseData.data[0].presentation;
+      const id_parametres_generaux = responseData.data[0].id;
       dispatch(presentationReducer(text_presentation));
+      dispatch(idReducer(id_parametres_generaux));
       setGETAPIState({loading: false, error: false, data: responseData});
     })
     .catch(erreur => {
