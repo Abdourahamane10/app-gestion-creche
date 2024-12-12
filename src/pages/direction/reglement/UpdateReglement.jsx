@@ -100,9 +100,9 @@ export default function UpdateReglement() {
           <label htmlFor="reglementInterieur">Modifier le règlement intérieur</label>
           <textarea id="reglementInterieur" ref={reglementInterieurTexteareaRef} defaultValue={reglementTexte}></textarea>
         </div>
-        <button className={textesAdminStyle.btnModifier}>
+        <button className={textesAdminStyle.btnEnregistrer}>
           {APIState.loading && (<img className={indexStyle.spinner} src="/icones/spinner.svg" />)}
-          Modifier
+          Enregistrer
         </button>
       </form>
       {messageToDisplay != "" && (<p style={{ color: `${successMessage ? "green" : "red"}`, padding: 10 }}>{messageToDisplay}</p>)}
