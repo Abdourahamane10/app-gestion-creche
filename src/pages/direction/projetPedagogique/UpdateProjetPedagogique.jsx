@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import textesAdminStyle from "../textesAdmin.module.css";
 import indexStyle from "../../../index.module.css";
-import { projetPedagogiqueReducer } from "../../../features/textesAdminSlice";
+import { projetPedagogiqueReducer, idReducer } from "../../../features/textesAdminSlice";
 import { useNavigate } from "react-router-dom";
 
 export default function UpdateProjetPedagogique() {
@@ -34,7 +34,7 @@ export default function UpdateProjetPedagogique() {
 
  const navigate = useNavigate();
 
- const [parametresGenerauxId, setParametresGenerauxId] = useState(0);
+ const parametresGenerauxId = useSelector(state => state.textesAdmin.id);
 
   useEffect(() => {
     setGETAPIState({loading: true, error: false, data: undefined});
@@ -58,7 +58,8 @@ export default function UpdateProjetPedagogique() {
     })
     .then(responseData => {
       const text_projetPedagogique = responseData.data[0].projet_pedagogique;
-      setParametresGenerauxId(responseData.data[0].id)
+      const id_parametres_generaux = responseData.data[0].id;
+      dispatch(idReducer(id_parametres_generaux));
       dispatch(projetPedagogiqueReducer(text_projetPedagogique));
       setGETAPIState({loading: false, error: false, data: responseData});
     })
