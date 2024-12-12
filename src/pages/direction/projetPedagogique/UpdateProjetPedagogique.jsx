@@ -4,12 +4,19 @@ import { useDispatch, useSelector } from "react-redux";
 import textesAdminStyle from "../textesAdmin.module.css";
 import indexStyle from "../../../index.module.css";
 import { projetPedagogiqueReducer } from "../../../features/textesAdminSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function UpdateProjetPedagogique() {
 
   const projetPedagogiqueTexte = useSelector(state => state.textesAdmin.projetPedagogiqueTexte);
 
-  const [APIState, setAPIState] = useState({
+  const [PATCHAPIState, setPATCHAPIState] = useState({
+    loading: false,
+    error: false,
+    data: undefined
+  });
+
+  const [GETAPIState, setGETAPIState] = useState({
     loading: false,
     error: false,
     data: undefined
@@ -25,8 +32,13 @@ export default function UpdateProjetPedagogique() {
 
   const dispatch = useDispatch();
 
+ const navigate = useNavigate();
+
+ const [parametresGenerauxId, setParametresGenerauxId] = useState(0);
+
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/parametresGeneraux/1",{
+    setGETAPIState({loading: true, error: false, data: undefined});
+    fetch("http://127.0.0.1:8000/api/parametresGeneraux",{
       method: "GET",
       headers: {
         'Content-Type': 'application/json',
@@ -35,6 +47,9 @@ export default function UpdateProjetPedagogique() {
     })
     .then(response => {
       if(!response.ok) {
+        if(response.status == 401){
+          navigate('/');
+        }
         return response.json().then(messageError => {
           throw Error(messageError.message || messageError.error || "Erreur inattendu");
         });
@@ -42,21 +57,24 @@ export default function UpdateProjetPedagogique() {
       return response.json();
     })
     .then(responseData => {
-      const text_projetPedagogique = responseData.data.texte_projet_pedagogique;
+      const text_projetPedagogique = responseData.data[0].projet_pedagogique;
+      setParametresGenerauxId(responseData.data[0].id)
       dispatch(projetPedagogiqueReducer(text_projetPedagogique));
+      setGETAPIState({loading: false, error: false, data: responseData});
     })
     .catch(erreur => {
       setMessageToDisplay(erreur.message);
       setTimeout(() => {
         setMessageToDisplay("");
       }, 7000);
+      setGETAPIState({loading: false, error: true, data: undefined});
     })
-  });
+  }, [token, dispatch, navigate]);
 
   function handleSubmit(e) {
     e.preventDefault();
-    setAPIState({...APIState, loading: true})
-    fetch("http://127.0.0.1:8000/api/parametresGeneraux/1",{
+    setPATCHAPIState({loading: true, error: false, data: undefined})
+    fetch(`http://127.0.0.1:8000/api/parametresGeneraux/${parametresGenerauxId}`,{
       method: "PATCH",
       headers: {
         'Content-Type': 'application/json',
@@ -68,6 +86,9 @@ export default function UpdateProjetPedagogique() {
     })
     .then(response => {
       if(!response.ok){
+        if(response.status == 401) {
+          navigate('/');
+        }
         return response.json().then(messageError => {
           throw Error(messageError.message || messageError.error || "Erreur inattendu");
         });
@@ -75,21 +96,21 @@ export default function UpdateProjetPedagogique() {
       return response.json();
     })
     .then(responseData => {
-      const text_projetPedagogique = responseData.data.texte_projet_pedagogique;
+      const text_projetPedagogique = responseData.data.projet_pedagogique;
       dispatch(projetPedagogiqueReducer(text_projetPedagogique));
       setMessageToDisplay(responseData.message);
       setSuccessMessage(true);
       setTimeout(() => {
         setMessageToDisplay("");
       }, 7000);
-      setAPIState({loading: false, error: false, data: responseData});
+      setPATCHAPIState({loading: false, error: false, data: responseData});
     })
     .catch(erreur => {
       setMessageToDisplay(erreur.message);
       setTimeout(() => {
         setMessageToDisplay("");
       }, 7000);
-      setAPIState({loading: false, error: true, data: undefined});
+      setPATCHAPIState({loading: false, error: true, data: undefined});
     })
   }
 
@@ -98,10 +119,12 @@ export default function UpdateProjetPedagogique() {
       <form onSubmit={handleSubmit}>
         <div>
         <label htmlFor="projetPedagogique">Modifier le projet pédagogique</label>
-        <textarea id="projetPedagogique" ref={projetPedagogiqueTexteareaRef} defaultValue={projetPedagogiqueTexte}></textarea>
+        {GETAPIState.loading ? (<img className={indexStyle.spinner} src="/icones/spinner.svg" />) : 
+        (<textarea id="projetPedagogique" ref={projetPedagogiqueTexteareaRef} defaultValue={projetPedagogiqueTexte}></textarea>)
+        } 
         </div>
         <button className={textesAdminStyle.btnEnregistrer}>
-          {APIState.loading && (<img className={indexStyle.spinner} src="/icones/spinner.svg" />)}
+          {PATCHAPIState.loading && (<img className={indexStyle.spinner} src="/icones/spinner.svg" />)}
           Enregistrer
         </button>
       </form>
