@@ -100,9 +100,9 @@ export default function UpdateProjetPedagogique() {
         <label htmlFor="projetPedagogique">Modifier le projet pédagogique</label>
         <textarea id="projetPedagogique" ref={projetPedagogiqueTexteareaRef} defaultValue={projetPedagogiqueTexte}></textarea>
         </div>
-        <button className={textesAdminStyle.btnModifier}>
+        <button className={textesAdminStyle.btnEnregistrer}>
           {APIState.loading && (<img className={indexStyle.spinner} src="/icones/spinner.svg" />)}
-          Modifier
+          Enregistrer
         </button>
       </form>
       {messageToDisplay != "" && (<p style={{ color: `${successMessage ? "green" : "red"}`, padding: 10 }}>{messageToDisplay}</p>)}
