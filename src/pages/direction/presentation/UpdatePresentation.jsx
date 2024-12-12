@@ -33,6 +33,8 @@ export default function UpdatePresentation() {
 
   const [successMessage, setSuccessMessage] = useState(false);
 
+  const parametresGenerauxId = useSelector(state => state.textesAdmin.id);
+
   //Mise à jour du state presentationTexte après le chargement du composant
   useEffect(() => {
     setGETAPIState({loading: true, error: false, data: undefined});
@@ -72,7 +74,7 @@ export default function UpdatePresentation() {
   function handleSubmit(event) {
     event.preventDefault();
     setPATCHAPIState({...PATCHAPIState, loading: true})
-    fetch("http://127.0.0.1:8000/api/parametresGeneraux/1",{
+    fetch(`http://127.0.0.1:8000/api/parametresGeneraux/${parametresGenerauxId}`,{
       method: "PATCH",
       headers: {
         'Content-Type': 'application/json',
@@ -91,7 +93,7 @@ export default function UpdatePresentation() {
       return response.json();
     })
     .then(responseData => {
-      const text_presentation = responseData.data[0].presentation;
+      const text_presentation = responseData.data.presentation;
       dispatch(presentationReducer(text_presentation));
       setMessageToDisplay(responseData.message);
       setSuccessMessage(true);
