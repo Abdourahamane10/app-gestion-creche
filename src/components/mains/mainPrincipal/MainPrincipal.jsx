@@ -85,8 +85,7 @@ export default function MainPrincipal() {
         {presentationTexte != "" && (
           <div className={mainProfessionnnelStyle.presentation_container}>
           <h2>Présentation de la crèche</h2>
-          {APIState.loading && (<img className={indexStyle.spinner} style={{ backgroundColor: 'gray' }} src="/icones/spinner.svg" />)}
-          <p>{presentationTexte}</p>
+          {(APIState.loading && (<img className={indexStyle.spinner} style={{ backgroundColor: 'gray' }} src="/icones/spinner.svg" />)) || <p>{presentationTexte}</p>}
           {((codeUser == "DR") || (codeUser == "DA")) && (
             <div className={mainProfessionnnelStyle.btnModifierContainer}>
               <button className={mainProfessionnnelStyle.btnModifier} onClick={handleClickBtnModifierPresentation}>Modifier</button>
@@ -96,8 +95,7 @@ export default function MainPrincipal() {
         {projetPedagogiqueTexte != "" && (
           <div className={mainProfessionnnelStyle.pedagogique_container}>
           <h2>Projet pédagogique de la crèche</h2>
-          {APIState.loading && (<img className={indexStyle.spinner} style={{ backgroundColor: 'gray' }} src="/icones/spinner.svg" />)}
-          <p>{projetPedagogiqueTexte}</p>
+          {(APIState.loading && (<img className={indexStyle.spinner} style={{ backgroundColor: 'gray' }} src="/icones/spinner.svg" />)) || <p>{projetPedagogiqueTexte}</p>}
           {((codeUser == "DR") || (codeUser == "DA")) && (
             <div className={mainProfessionnnelStyle.btnModifierContainer}>
               <button className={mainProfessionnnelStyle.btnModifier} onClick={handleClickBtnModifierProjetPedagogique}>Modifier</button>
@@ -107,8 +105,7 @@ export default function MainPrincipal() {
         {reglementTexte != "" && (
           <div className={mainProfessionnnelStyle.reglement_container}>
           <h2>Réglement intérieur</h2>
-          {APIState.loading && (<img className={indexStyle.spinner} style={{ backgroundColor: 'gray' }} src="/icones/spinner.svg" />)}
-          <p>{reglementTexte}</p>
+          {(APIState.loading && (<img className={indexStyle.spinner} style={{ backgroundColor: 'gray' }} src="/icones/spinner.svg" />)) || <p>{reglementTexte}</p>}
           {((codeUser == "DR") || (codeUser == "DA")) && (
             <div className={mainProfessionnnelStyle.btnModifierContainer}>
               <button className={mainProfessionnnelStyle.btnModifier} onClick={handleClickBtnModifierReglement}>Modifier</button>
