@@ -1,0 +1,75 @@
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom";
+import { sectionReducer } from "../../../features/sectionSlice";
+
+import indexStyle from "../../../index.module.css";
+import adminStyle from "./Admin.module.css";
+
+export default function Admin() {
+
+    const listeSections = useSelector(state => state.listeSections.sections);
+    const token = useSelector(state => state.auth.token);
+
+    const navigate = useNavigate();
+
+    const [SectionAPIState, setSectionAPIState] = useState({
+        loading: false,
+        error: false,
+        data: undefined
+    });
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+      setSectionAPIState({loading: true, error: false, data: undefined});
+      fetch("http://127.0.0.1:8000/api/section", {
+        method: "GET",
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      .then(response => {
+        if(!response.ok){
+          if(response.status === 401) {
+            navigate('/');
+          }
+          return response.json().then(messageError => {
+            throw Error(messageError.message || messageError.error || "Erreur inattendu");
+          });
+        }
+        return response.json();
+      })
+      .then(responseData => {
+        const sections = responseData.data;
+        dispatch(sectionReducer(sections));
+        setSectionAPIState({loading: false, error: false, data: responseData});
+        console.log(sections);
+      })
+      .catch(() => {
+        setSectionAPIState({loading: false, error: true, data: undefined});
+      });
+    }, [token, dispatch, navigate]);
+
+  return (
+    <div className={adminStyle.sectionMain}>
+      <h2 className={adminStyle.sections}>Sections</h2>
+      {SectionAPIState.loading && (
+        <div>
+          <img className={indexStyle.spinner} style={{ backgroundColor: "darkgray" }} src="/icones/spinner.svg" />
+        </div>
+      )}
+      {listeSections.length > 0 && (
+        <div className={adminStyle.sectionsContainer}>
+          {listeSections.map((section) => (
+            <div key={section.id} className={adminStyle.sectionCard}>
+              <h3 className={adminStyle.sectionName}>{section.nom_section}</h3>
+            </div>
+          ))}
+        </div>
+      )}
+     <button className={adminStyle.addSectionBtn}>Ajouter une section</button>
+    </div>
+  )
+}
