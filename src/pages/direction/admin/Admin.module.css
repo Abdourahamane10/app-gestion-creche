@@ -18,8 +18,9 @@
     text-align: center;
     border: 1px solid var(--dark-color);
     border-radius: 5px;
-    background-color: var(--light-color);
+    background-color: var(--light-orange);
     padding: 10px 20px;
+    box-shadow: 0 0 10px 1px var(--dark-color);
 }
 
 .addSectionBtn {
