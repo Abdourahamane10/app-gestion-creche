@@ -32,3 +32,8 @@
 .sectionMain {
     padding: 15px;
 }
+
+.loadingContainer {
+    display: flex;
+    justify-content: center;
+}
