@@ -55,12 +55,12 @@ export default function Admin() {
   return (
     <div className={adminStyle.sectionMain}>
       <h2 className={adminStyle.sections}>Sections</h2>
-      {SectionAPIState.loading && (
-        <div>
+      {SectionAPIState.loading ? (
+        <div className={adminStyle.loadingContainer}>
           <img className={indexStyle.spinner} style={{ backgroundColor: "darkgray" }} src="/icones/spinner.svg" />
         </div>
-      )}
-      {listeSections.length > 0 && (
+      ) : 
+      listeSections.length > 0 && (
         <div className={adminStyle.sectionsContainer}>
           {listeSections.map((section) => (
             <div key={section.id} className={adminStyle.sectionCard}>
