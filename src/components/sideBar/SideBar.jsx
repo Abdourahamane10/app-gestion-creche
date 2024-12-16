@@ -12,7 +12,7 @@ export default function SideBar() {
       {((codeUser == "DR") || (codeUser == "DA")) ? (
         <>
         <div className={sideBarStyle.item_direction}>
-        <Link to="#">
+        <Link to="admin">
           Admin
         </Link>
       </div>
