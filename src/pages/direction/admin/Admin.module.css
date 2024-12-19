@@ -37,3 +37,11 @@
     display: flex;
     justify-content: center;
 }
+
+.sectionName {
+    margin-bottom: 15px;
+}
+
+.sectionItem {
+    margin-bottom: 10px;
+}
