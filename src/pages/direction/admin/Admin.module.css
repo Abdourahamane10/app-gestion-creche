@@ -45,3 +45,8 @@
 .sectionItem {
     margin-bottom: 10px;
 }
+
+.sectionItemReferentName {
+    font-weight: 800;
+    color: gray;
+}
