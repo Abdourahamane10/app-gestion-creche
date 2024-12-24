@@ -65,6 +65,9 @@ export default function Admin() {
           {listeSections.map((section) => (
             <div key={section.id} className={adminStyle.sectionCard}>
               <h3 className={adminStyle.sectionName}>{section.nom_section}</h3>
+              <p className={adminStyle.sectionItem}>{`Nombre d'enfants : ${section.enfants.length}`}</p>
+              <p className={adminStyle.sectionItem}>{`Nombre de professionnelles : ${section.employes.length}`}</p>
+              <p className={adminStyle.sectionItem}>Référent de section : <span className={adminStyle.sectionItemReferentName}>{section.referent? section.referent.nom: ""} {section.referent? section.referent.prenom : ""}</span></p>
             </div>
           ))}
         </div>
