@@ -50,3 +50,68 @@
     font-weight: 800;
     color: gray;
 }
+
+
+/*Media queries*/
+/* Styles spécifiques pour les téléphones en mode portrait */
+@media (max-width: 480px) {
+    .sectionsContainer {
+        max-width: 900px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        justify-content: center;
+        justify-items: center;
+        margin-bottom: 5px;
+        padding: 30px 30px 40px;
+    }
+    .sectionCard {
+        width: 150px;
+        height: 250px;
+        text-align: center;
+        border: 1px solid var(--dark-color);
+        border-radius: 5px;
+        background-color: var(--light-orange);
+        padding: 10px 20px;
+        box-shadow: 0 0 10px 1px var(--dark-color);
+    }
+  }
+  
+  /* Styles spécifiques pour les téléphones en mode paysage */
+  /* @media (min-width: 481px) and (max-width: 767px) {
+    .main_container {
+      max-width: 400px;
+      padding: calc(70px + 170px) 20px 50px;
+    }
+  } */
+  
+  /* Styles spécifiques pour les tablettes en mode portrait */
+  /* @media (min-width: 768px) and (max-width: 1024px) {
+    .main_container {
+      max-width: 500px;
+      padding: calc(70px + 70px) 30px 60px;
+    }
+  } */
+  
+  /* Styles spécifiques pour les tablettes en mode paysage */
+  /* @media (min-width: 1025px) and (max-width: 1280px) {
+    .main_container {
+      max-width: 700px;
+      padding: calc(70px + 70px) 40px 70px;
+    }
+  } */
+  
+  /* Styles spécifiques pour les petits ordinateurs portables */
+  /* @media (min-width: 1281px) and (max-width: 1440px) {
+    .main_container {
+      max-width: 800px;
+      padding: calc(70px + 70px) 50px 80px;
+    }
+  } */
+  
+  /* Styles spécifiques pour les grands écrans d'ordinateur */
+  /* @media (min-width: 1441px) {
+    .main_container {
+      max-width: 900px;
+      padding: calc(70px + 70px) 60px 90px;
+    }
+  } */
