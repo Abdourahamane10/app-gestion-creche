@@ -11,7 +11,8 @@ import Footer from "./components/footer/Footer"
 import UpdatePresentation from "./pages/direction/presentation/UpdatePresentation"
 import UpdateProjetPedagogique from "./pages/direction/projetPedagogique/UpdateProjetPedagogique"
 import UpdateReglement from "./pages/direction/reglement/UpdateReglement"
-import Admin from "./pages/direction/admin/Admin"
+import Sections from "./pages/direction/sections/Sections"
+import AddSection from "./pages/direction/sections/addSection/AddSection"
 
 export default function AppContent() {
     const codeUser = useSelector(state => state.auth.codeUser);
@@ -39,7 +40,8 @@ export default function AppContent() {
               <Route path="updatePresentation" element={<UpdatePresentation />} />
               <Route path="updateProjetPedagogique" element={<UpdateProjetPedagogique />} />
               <Route path="updateReglement" element={<UpdateReglement />} />
-              <Route path="admin" element={<Admin />} />
+              <Route path="/sections" element={<Sections />} />
+              <Route path="/addSection" element={<AddSection />} />
             </Routes>
           </main>
           <Footer />
