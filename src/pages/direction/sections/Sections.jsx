@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom";
-import { sectionReducer } from "../../../features/sectionSlice";
+import { getSectionReducer } from "../../../features/sectionSlice";
 
 import indexStyle from "../../../index.module.css";
-import adminStyle from "./Admin.module.css";
+import adminStyle from "./Sections.module.css";
 
-export default function Admin() {
+export default function Sections() {
 
     const listeSections = useSelector(state => state.listeSections.sections);
     const token = useSelector(state => state.auth.token);
@@ -43,14 +43,17 @@ export default function Admin() {
       })
       .then(responseData => {
         const sections = responseData.data;
-        dispatch(sectionReducer(sections));
+        dispatch(getSectionReducer(sections));
         setSectionAPIState({loading: false, error: false, data: responseData});
-        console.log(sections);
       })
       .catch(() => {
         setSectionAPIState({loading: false, error: true, data: undefined});
       });
     }, [token, dispatch, navigate]);
+
+    function handleClickAddSectionBtn() {
+      navigate('/addSection');
+    }
 
   return (
     <div className={adminStyle.sectionMain}>
@@ -72,7 +75,7 @@ export default function Admin() {
           ))}
         </div>
       )}
-     <button className={adminStyle.addSectionBtn}>Ajouter une section</button>
+     <button className={adminStyle.addSectionBtn} onClick={handleClickAddSectionBtn}>Ajouter une section</button>
     </div>
   )
 }
