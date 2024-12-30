@@ -10,12 +10,14 @@
 
 .item_prof {
     margin-bottom: 10px;
+    padding: 5px;
 }
 
 .item_direction {
     margin-bottom: 15px;
     border: 1px solid #f1f1f1;
     border-radius: 5px;
+    padding: 5px;
 }
 
 .item_prof, .item_direction {
