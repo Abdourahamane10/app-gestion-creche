@@ -79,46 +79,69 @@ export default function MainPrincipal() {
     navigate('/updateProjetPedagogique');
   }
 
+  function handleClickBtnAjouterProjetPedagogique() {
+    navigate('/');
+  }
+
   function handleClickBtnModifierReglement(){
     navigate('/updateReglement');
   }
 
+  function handleClickBtnAjouterReglement() {
+    navigate('/');
+  }
+
   return (
-    <>
-        {messageToDisplay != "" && (<p style={{ color: `${successMessage ? "green" : "red"}`, padding: 10 }}>{messageToDisplay}</p>)}
-        {presentationTexte != "" && (
-          <div className={mainProfessionnnelStyle.presentation_container}>
-          <h2>Présentation de la crèche</h2>
-          {(APIState.loading && (<img className={indexStyle.spinner} style={{ backgroundColor: 'gray' }} src="/icones/spinner.svg" />)) || <p>{presentationTexte}</p>}
-          {((codeUser == "DR") || (codeUser == "DA")) && (
-            <div className={mainProfessionnnelStyle.btnModifierContainer}>
-              {presentationTexte 
-              ? <button className={mainProfessionnnelStyle.btnModifier} onClick={handleClickBtnModifierPresentation}>Modifier</button>
-              : <button className={mainProfessionnnelStyle.btnModifier} onClick={handleClickBtnAjouterPresentation}>Ajouter Un texte</button>
-             }
-            </div>
-            )}
-        </div>)}
-        {projetPedagogiqueTexte != "" && (
-          <div className={mainProfessionnnelStyle.pedagogique_container}>
-          <h2>Projet pédagogique de la crèche</h2>
-          {(APIState.loading && (<img className={indexStyle.spinner} style={{ backgroundColor: 'gray' }} src="/icones/spinner.svg" />)) || <p>{projetPedagogiqueTexte}</p>}
-          {((codeUser == "DR") || (codeUser == "DA")) && (
-            <div className={mainProfessionnnelStyle.btnModifierContainer}>
-              <button className={mainProfessionnnelStyle.btnModifier} onClick={handleClickBtnModifierProjetPedagogique}>Modifier</button>
-            </div>
-            )}
-        </div>)}
-        {reglementTexte != "" && (
-          <div className={mainProfessionnnelStyle.reglement_container}>
-          <h2>Réglement intérieur</h2>
-          {(APIState.loading && (<img className={indexStyle.spinner} style={{ backgroundColor: 'gray' }} src="/icones/spinner.svg" />)) || <p>{reglementTexte}</p>}
-          {((codeUser == "DR") || (codeUser == "DA")) && (
-            <div className={mainProfessionnnelStyle.btnModifierContainer}>
-              <button className={mainProfessionnnelStyle.btnModifier} onClick={handleClickBtnModifierReglement}>Modifier</button>
-            </div>
-            )}
-        </div>)}
+     <>
+      {(APIState.loading && (<div className={mainProfessionnnelStyle.loadingContainer}><img className={indexStyle.spinner} style={{ backgroundColor: 'gray' }} src="/icones/spinner.svg" /></div>))
+      ||
+      (
+        <div>
+          {messageToDisplay != "" && (<p style={{ color: `${successMessage ? "green" : "red"}`, padding: 10 }}>{messageToDisplay}</p>)}
+            {presentationTexte != "" && (
+              <div className={mainProfessionnnelStyle.presentation_container}>
+                <h2>Présentation de la crèche</h2>
+                <p>{presentationTexte}</p>
+                {((codeUser == "DR") || (codeUser == "DA")) && (
+                  <div className={mainProfessionnnelStyle.btnModifierContainer}>
+                    {presentationTexte 
+                    ? <button className={mainProfessionnnelStyle.btnModifier} onClick={handleClickBtnModifierPresentation}>Modifier</button>
+                    : <button className={mainProfessionnnelStyle.btnModifier} onClick={handleClickBtnAjouterPresentation}>Ajouter Un texte</button>
+                    }
+                  </div>
+                  )}
+              </div>)
+            }
+            {projetPedagogiqueTexte != "" && (
+              <div className={mainProfessionnnelStyle.pedagogique_container}>
+                <h2>Projet pédagogique de la crèche</h2>
+                <p>{projetPedagogiqueTexte}</p>
+                {((codeUser == "DR") || (codeUser == "DA")) && (
+                  <div className={mainProfessionnnelStyle.btnModifierContainer}>
+                    {projetPedagogiqueTexte 
+                    ? <button className={mainProfessionnnelStyle.btnModifier} onClick={handleClickBtnModifierProjetPedagogique}>Modifier</button>
+                    : <button className={mainProfessionnnelStyle.btnModifier} onClick={handleClickBtnAjouterProjetPedagogique}>Ajouter Un texte</button>
+                    }
+                  </div>
+                )}
+              </div>)
+            }
+            {reglementTexte != "" && (
+              <div className={mainProfessionnnelStyle.reglement_container}>
+                <h2>Réglement intérieur</h2>
+                <p>{reglementTexte}</p>
+                {((codeUser == "DR") || (codeUser == "DA")) && (
+                  <div className={mainProfessionnnelStyle.btnModifierContainer}>
+                    {reglementTexte 
+                    ? <button className={mainProfessionnnelStyle.btnModifier} onClick={handleClickBtnModifierReglement}>Modifier</button>
+                    : <button className={mainProfessionnnelStyle.btnModifier} onClick={handleClickBtnAjouterReglement}>Ajouter Un texte</button>
+                    }
+                  </div>
+                  )}
+              </div>)
+            }
+      </div>
+      )}
     </>
   )
 }
