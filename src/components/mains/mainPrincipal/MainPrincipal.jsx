@@ -71,6 +71,10 @@ export default function MainPrincipal() {
     navigate('/updatePresentation');
   }
 
+  function handleClickBtnAjouterPresentation() {
+    navigate('/updatePresentation');
+  }
+
   function handleClickBtnModifierProjetPedagogique(){
     navigate('/updateProjetPedagogique');
   }
@@ -88,7 +92,10 @@ export default function MainPrincipal() {
           {(APIState.loading && (<img className={indexStyle.spinner} style={{ backgroundColor: 'gray' }} src="/icones/spinner.svg" />)) || <p>{presentationTexte}</p>}
           {((codeUser == "DR") || (codeUser == "DA")) && (
             <div className={mainProfessionnnelStyle.btnModifierContainer}>
-              <button className={mainProfessionnnelStyle.btnModifier} onClick={handleClickBtnModifierPresentation}>Modifier</button>
+              {presentationTexte 
+              ? <button className={mainProfessionnnelStyle.btnModifier} onClick={handleClickBtnModifierPresentation}>Modifier</button>
+              : <button className={mainProfessionnnelStyle.btnModifier} onClick={handleClickBtnAjouterPresentation}>Ajouter Un texte</button>
+             }
             </div>
             )}
         </div>)}
