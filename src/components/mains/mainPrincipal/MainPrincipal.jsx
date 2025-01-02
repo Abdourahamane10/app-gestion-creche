@@ -105,8 +105,11 @@ export default function MainPrincipal() {
                 {((codeUser == "DR") || (codeUser == "DA")) && (
                   <div className={mainProfessionnnelStyle.btnModifierContainer}>
                     {presentationTexte 
-                    ? <button className={mainProfessionnnelStyle.btnModifier} onClick={handleClickBtnModifierPresentation}>Modifier</button>
-                    : <button className={mainProfessionnnelStyle.btnModifier} onClick={handleClickBtnAjouterPresentation}>Ajouter Un texte</button>
+                    ? <div className={mainProfessionnnelStyle.btnModifier_and_btnSupprimer_container}>
+                        <button className={mainProfessionnnelStyle.btnModifier} onClick={handleClickBtnModifierPresentation}>Modifier</button>
+                        <button className={mainProfessionnnelStyle.btnSupprimer}>Supprimer</button>
+                      </div>
+                    : <button className={mainProfessionnnelStyle.Ajouter} onClick={handleClickBtnAjouterPresentation}>Ajouter Un texte</button>
                     }
                   </div>
                   )}
@@ -119,8 +122,11 @@ export default function MainPrincipal() {
                 {((codeUser == "DR") || (codeUser == "DA")) && (
                   <div className={mainProfessionnnelStyle.btnModifierContainer}>
                     {projetPedagogiqueTexte 
-                    ? <button className={mainProfessionnnelStyle.btnModifier} onClick={handleClickBtnModifierProjetPedagogique}>Modifier</button>
-                    : <button className={mainProfessionnnelStyle.btnModifier} onClick={handleClickBtnAjouterProjetPedagogique}>Ajouter Un texte</button>
+                    ? <div className={mainProfessionnnelStyle.btnModifier_and_btnSupprimer_container}>
+                        <button className={mainProfessionnnelStyle.btnModifier} onClick={handleClickBtnModifierProjetPedagogique}>Modifier</button>
+                        <button className={mainProfessionnnelStyle.btnSupprimer}>Supprimer</button>
+                      </div>
+                    : <button className={mainProfessionnnelStyle.Ajouter} onClick={handleClickBtnAjouterProjetPedagogique}>Ajouter Un texte</button>
                     }
                   </div>
                 )}
@@ -133,8 +139,11 @@ export default function MainPrincipal() {
                 {((codeUser == "DR") || (codeUser == "DA")) && (
                   <div className={mainProfessionnnelStyle.btnModifierContainer}>
                     {reglementTexte 
-                    ? <button className={mainProfessionnnelStyle.btnModifier} onClick={handleClickBtnModifierReglement}>Modifier</button>
-                    : <button className={mainProfessionnnelStyle.btnModifier} onClick={handleClickBtnAjouterReglement}>Ajouter Un texte</button>
+                    ? <div className={mainProfessionnnelStyle.btnModifier_and_btnSupprimer_container}>
+                        <button className={mainProfessionnnelStyle.btnModifier} onClick={handleClickBtnModifierReglement}>Modifier</button>
+                        <button className={mainProfessionnnelStyle.btnSupprimer}>Supprimer</button>
+                      </div>
+                    : <button className={mainProfessionnnelStyle.btnAjouter} onClick={handleClickBtnAjouterReglement}>Ajouter Un texte</button>
                     }
                   </div>
                   )}
