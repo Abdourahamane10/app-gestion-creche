@@ -139,8 +139,6 @@ export default function AddSection() {
     }); 
   }
 
-  console.log(optionSelected);
-
   return (
     <div>
         {(!isLoadingEmployes && !erreurAPIEmploye && employes.length == 0) && (
