@@ -2,11 +2,14 @@
     margin-bottom: 40px;
 }
 
-.presentation_container .btnModifier, .pedagogique_container .btnModifier, .reglement_container .btnModifier  {
+.presentation_container .btnModifier, .pedagogique_container .btnModifier, .reglement_container .btnModifier, .presentation_container .btnAjouter,  .pedagogique_container .btnAjouter, .reglement_container .btnAjouter {
   background-color: var(--primary-color);
   color: var(--light-color);
-  margin-top: 20px;
-  margin-left: auto;
+  display: block;
+}
+
+.presentation_container .btnModifier, .pedagogique_container .btnModifier, .reglement_container .btnModifier {
+  margin-right: 10px;
 }
 
 .btnModifierContainer {
@@ -15,9 +18,26 @@
 
 .presentation_container h2, .pedagogique_container h2, .reglement_container h2 {
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .loadingContainer {
   text-align: center;
 }
+
+.btnModifier_and_btnSupprimer_container {
+  display: flex;
+  margin-top: 20px;
+  margin-left: auto;
+}
+
+.presentation_container .btnSupprimer, .pedagogique_container .btnSupprimer, .reglement_container .btnSupprimer  {
+  background-color: var(--danger-color);
+  display: block;
+}
+
+.presentation_container .btnModifier, .pedagogique_container .btnModifier, .reglement_container .btnModifier, .presentation_container .btnAjouter,  .pedagogique_container .btnAjouter, .reglement_container .btnAjouter, .presentation_container .btnSupprimer, .pedagogique_container .btnSupprimer, .reglement_container .btnSupprimer {
+  width: 100px;
+}
+
   
