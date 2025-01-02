@@ -101,7 +101,7 @@ export default function MainPrincipal() {
             {presentationTexte != "" && (
               <div className={mainProfessionnnelStyle.presentation_container}>
                 <h2>Présentation de la crèche</h2>
-                <p>{presentationTexte}</p>
+                <p>{presentationTexte ? presentationTexte : "Pas de texte de présentation de la crèche"}</p>
                 {((codeUser == "DR") || (codeUser == "DA")) && (
                   <div className={mainProfessionnnelStyle.btnModifierContainer}>
                     {presentationTexte 
@@ -115,7 +115,7 @@ export default function MainPrincipal() {
             {projetPedagogiqueTexte != "" && (
               <div className={mainProfessionnnelStyle.pedagogique_container}>
                 <h2>Projet pédagogique de la crèche</h2>
-                <p>{projetPedagogiqueTexte}</p>
+                <p>{projetPedagogiqueTexte ? projetPedagogiqueTexte : "Pas de texte pour le projet pédagogique de la crèche"}</p>
                 {((codeUser == "DR") || (codeUser == "DA")) && (
                   <div className={mainProfessionnnelStyle.btnModifierContainer}>
                     {projetPedagogiqueTexte 
@@ -129,7 +129,7 @@ export default function MainPrincipal() {
             {reglementTexte != "" && (
               <div className={mainProfessionnnelStyle.reglement_container}>
                 <h2>Réglement intérieur</h2>
-                <p>{reglementTexte}</p>
+                <p>{reglementTexte ? reglementTexte : "Pas de texte pour le règlement intérieur"}</p>
                 {((codeUser == "DR") || (codeUser == "DA")) && (
                   <div className={mainProfessionnnelStyle.btnModifierContainer}>
                     {reglementTexte 
