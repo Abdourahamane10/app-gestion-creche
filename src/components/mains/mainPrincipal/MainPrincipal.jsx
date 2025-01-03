@@ -86,7 +86,7 @@ export default function MainPrincipal() {
   }
 
   function handleClickBtnAjouterTextes() {
-    navigate('/');
+    navigate('/addTextesAdmin');
   }
 
   return (
