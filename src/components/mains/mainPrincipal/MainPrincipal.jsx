@@ -26,7 +26,10 @@ export default function MainPrincipal() {
 
   const navigate = useNavigate();
 
+  const [isloadingData, setIsLoadingData] = useState(true);
+
   useEffect(() => {
+    setIsLoadingData(true);
     setAPIState({loading: true, error: false, data: undefined});
     fetch("http://127.0.0.1:8000/api/parametresGeneraux",{
       method: "GET",
@@ -63,6 +66,9 @@ export default function MainPrincipal() {
         setMessageToDisplay("");
       }, 7000);
     })
+    .finally(() => {
+      setIsLoadingData(false);
+    })
   }, [dispatch, token, navigate]);
 
   const codeUser = useSelector(state => state.auth.codeUser);
@@ -71,24 +77,16 @@ export default function MainPrincipal() {
     navigate('/updatePresentation');
   }
 
-  function handleClickBtnAjouterPresentation() {
-    navigate('/addPresentation');
-  }
-
   function handleClickBtnModifierProjetPedagogique(){
     navigate('/updateProjetPedagogique');
-  }
-
-  function handleClickBtnAjouterProjetPedagogique() {
-    navigate('/addProjetPedagogique');
   }
 
   function handleClickBtnModifierReglement(){
     navigate('/updateReglement');
   }
 
-  function handleClickBtnAjouterReglement() {
-    navigate('/addReglement');
+  function handleClickBtnAjouterTextes() {
+    navigate('/');
   }
 
   return (
@@ -98,58 +96,45 @@ export default function MainPrincipal() {
       (
         <div>
           {messageToDisplay != "" && (<p style={{ color: `${successMessage ? "green" : "red"}`, padding: 10 }}>{messageToDisplay}</p>)}
-            {presentationTexte != "" && (
+          {(!isloadingData && presentationTexte == "" && projetPedagogiqueTexte == "" && reglementTexte == "") 
+          ? <button className={mainProfessionnnelStyle.btnAjouter} onClick={handleClickBtnAjouterTextes}>Ajouter les textes</button>
+          : <div>
               <div className={mainProfessionnnelStyle.presentation_container}>
                 <h2>Présentation de la crèche</h2>
                 <p>{presentationTexte ? presentationTexte : "Pas de texte de présentation de la crèche"}</p>
                 {((codeUser == "DR") || (codeUser == "DA")) && (
                   <div className={mainProfessionnnelStyle.btnModifierContainer}>
-                    {presentationTexte 
-                    ? <div className={mainProfessionnnelStyle.btnModifier_and_btnSupprimer_container}>
+                    <div className={mainProfessionnnelStyle.btnModifier_and_btnSupprimer_container}>
                         <button className={mainProfessionnnelStyle.btnModifier} onClick={handleClickBtnModifierPresentation}>Modifier</button>
-                        {/* <button className={mainProfessionnnelStyle.btnSupprimer}>Supprimer</button> */}
-                      </div>
-                    : <button className={mainProfessionnnelStyle.Ajouter} onClick={handleClickBtnAjouterPresentation}>Ajouter Un texte</button>
-                    }
+                    </div>
                   </div>
-                  )}
-              </div>)
-            }
-            {projetPedagogiqueTexte != "" && (
+                )}
+              </div>
               <div className={mainProfessionnnelStyle.pedagogique_container}>
                 <h2>Projet pédagogique de la crèche</h2>
                 <p>{projetPedagogiqueTexte ? projetPedagogiqueTexte : "Pas de texte pour le projet pédagogique de la crèche"}</p>
                 {((codeUser == "DR") || (codeUser == "DA")) && (
                   <div className={mainProfessionnnelStyle.btnModifierContainer}>
-                    {projetPedagogiqueTexte 
-                    ? <div className={mainProfessionnnelStyle.btnModifier_and_btnSupprimer_container}>
-                        <button className={mainProfessionnnelStyle.btnModifier} onClick={handleClickBtnModifierProjetPedagogique}>Modifier</button>
-                        {/* <button className={mainProfessionnnelStyle.btnSupprimer}>Supprimer</button> */}
-                      </div>
-                    : <button className={mainProfessionnnelStyle.Ajouter} onClick={handleClickBtnAjouterProjetPedagogique}>Ajouter Un texte</button>
-                    }
+                    <div className={mainProfessionnnelStyle.btnModifier_and_btnSupprimer_container}>
+                      <button className={mainProfessionnnelStyle.btnModifier} onClick={handleClickBtnModifierProjetPedagogique}>Modifier</button>
+                    </div>
                   </div>
                 )}
-              </div>)
-            }
-            {reglementTexte != "" && (
+              </div>
               <div className={mainProfessionnnelStyle.reglement_container}>
                 <h2>Réglement intérieur</h2>
                 <p>{reglementTexte ? reglementTexte : "Pas de texte pour le règlement intérieur"}</p>
                 {((codeUser == "DR") || (codeUser == "DA")) && (
                   <div className={mainProfessionnnelStyle.btnModifierContainer}>
-                    {reglementTexte 
-                    ? <div className={mainProfessionnnelStyle.btnModifier_and_btnSupprimer_container}>
-                        <button className={mainProfessionnnelStyle.btnModifier} onClick={handleClickBtnModifierReglement}>Modifier</button>
-                        {/* <button className={mainProfessionnnelStyle.btnSupprimer}>Supprimer</button> */}
-                      </div>
-                    : <button className={mainProfessionnnelStyle.btnAjouter} onClick={handleClickBtnAjouterReglement}>Ajouter Un texte</button>
-                    }
+                    <div className={mainProfessionnnelStyle.btnModifier_and_btnSupprimer_container}>
+                      <button className={mainProfessionnnelStyle.btnModifier} onClick={handleClickBtnModifierReglement}>Modifier</button>
+                    </div>
                   </div>
-                  )}
-              </div>)
-            }
-      </div>
+                )}
+              </div>
+            </div>
+          }
+        </div>
       )}
     </>
   )
