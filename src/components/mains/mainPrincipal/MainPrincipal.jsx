@@ -107,7 +107,7 @@ export default function MainPrincipal() {
                     {presentationTexte 
                     ? <div className={mainProfessionnnelStyle.btnModifier_and_btnSupprimer_container}>
                         <button className={mainProfessionnnelStyle.btnModifier} onClick={handleClickBtnModifierPresentation}>Modifier</button>
-                        <button className={mainProfessionnnelStyle.btnSupprimer}>Supprimer</button>
+                        {/* <button className={mainProfessionnnelStyle.btnSupprimer}>Supprimer</button> */}
                       </div>
                     : <button className={mainProfessionnnelStyle.Ajouter} onClick={handleClickBtnAjouterPresentation}>Ajouter Un texte</button>
                     }
@@ -124,7 +124,7 @@ export default function MainPrincipal() {
                     {projetPedagogiqueTexte 
                     ? <div className={mainProfessionnnelStyle.btnModifier_and_btnSupprimer_container}>
                         <button className={mainProfessionnnelStyle.btnModifier} onClick={handleClickBtnModifierProjetPedagogique}>Modifier</button>
-                        <button className={mainProfessionnnelStyle.btnSupprimer}>Supprimer</button>
+                        {/* <button className={mainProfessionnnelStyle.btnSupprimer}>Supprimer</button> */}
                       </div>
                     : <button className={mainProfessionnnelStyle.Ajouter} onClick={handleClickBtnAjouterProjetPedagogique}>Ajouter Un texte</button>
                     }
@@ -141,7 +141,7 @@ export default function MainPrincipal() {
                     {reglementTexte 
                     ? <div className={mainProfessionnnelStyle.btnModifier_and_btnSupprimer_container}>
                         <button className={mainProfessionnnelStyle.btnModifier} onClick={handleClickBtnModifierReglement}>Modifier</button>
-                        <button className={mainProfessionnnelStyle.btnSupprimer}>Supprimer</button>
+                        {/* <button className={mainProfessionnnelStyle.btnSupprimer}>Supprimer</button> */}
                       </div>
                     : <button className={mainProfessionnnelStyle.btnAjouter} onClick={handleClickBtnAjouterReglement}>Ajouter Un texte</button>
                     }
