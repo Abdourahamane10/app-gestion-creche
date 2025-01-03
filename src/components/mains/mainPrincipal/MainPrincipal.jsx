@@ -72,7 +72,7 @@ export default function MainPrincipal() {
   }
 
   function handleClickBtnAjouterPresentation() {
-    navigate('/updatePresentation');
+    navigate('/addPresentation');
   }
 
   function handleClickBtnModifierProjetPedagogique(){
@@ -80,7 +80,7 @@ export default function MainPrincipal() {
   }
 
   function handleClickBtnAjouterProjetPedagogique() {
-    navigate('/');
+    navigate('/addProjetPedagogique');
   }
 
   function handleClickBtnModifierReglement(){
@@ -88,7 +88,7 @@ export default function MainPrincipal() {
   }
 
   function handleClickBtnAjouterReglement() {
-    navigate('/');
+    navigate('/addReglement');
   }
 
   return (
