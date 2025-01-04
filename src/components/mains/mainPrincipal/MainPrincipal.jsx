@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-import mainProfessionnnelStyle from "./MainPrincipal.module.css";
+import mainPrincipalStyle from "./MainPrincipal.module.css";
 import { presentationReducer, projetPedagogiqueReducer, reglementReducer } from "../../../features/textesAdminSlice";
 import indexStyle from "../../../index.module.css";
 
@@ -91,43 +91,43 @@ export default function MainPrincipal() {
 
   return (
      <>
-      {(APIState.loading && (<div className={mainProfessionnnelStyle.loadingContainer}><img className={indexStyle.spinner} style={{ backgroundColor: 'gray' }} src="/icones/spinner.svg" /></div>))
+      {(APIState.loading && (<div className={mainPrincipalStyle.loadingContainer}><img className={indexStyle.spinner} style={{ backgroundColor: 'gray' }} src="/icones/spinner.svg" /></div>))
       ||
       (
         <div>
           {messageToDisplay != "" && (<p style={{ color: `${successMessage ? "green" : "red"}`, padding: 10 }}>{messageToDisplay}</p>)}
           {(!isloadingData && presentationTexte == "" && projetPedagogiqueTexte == "" && reglementTexte == "") 
-          ? <button className={mainProfessionnnelStyle.btnAjouter} onClick={handleClickBtnAjouterTextes}>Ajouter les textes</button>
+          ? <button className={mainPrincipalStyle.btnAjouter} onClick={handleClickBtnAjouterTextes}>Ajouter les textes</button>
           : <div>
-              <div className={mainProfessionnnelStyle.presentation_container}>
+              <div className={mainPrincipalStyle.presentation_container}>
                 <h2>Présentation de la crèche</h2>
                 <p>{presentationTexte ? presentationTexte : "Pas de texte de présentation de la crèche"}</p>
                 {((codeUser == "DR") || (codeUser == "DA")) && (
-                  <div className={mainProfessionnnelStyle.btnModifierContainer}>
-                    <div className={mainProfessionnnelStyle.btnModifier_and_btnSupprimer_container}>
-                        <button className={mainProfessionnnelStyle.btnModifier} onClick={handleClickBtnModifierPresentation}>Modifier</button>
+                  <div className={mainPrincipalStyle.btnModifierContainer}>
+                    <div className={mainPrincipalStyle.btnModifier_and_btnSupprimer_container}>
+                        <button className={mainPrincipalStyle.btnModifier} onClick={handleClickBtnModifierPresentation}>Modifier</button>
                     </div>
                   </div>
                 )}
               </div>
-              <div className={mainProfessionnnelStyle.pedagogique_container}>
+              <div className={mainPrincipalStyle.pedagogique_container}>
                 <h2>Projet pédagogique de la crèche</h2>
                 <p>{projetPedagogiqueTexte ? projetPedagogiqueTexte : "Pas de texte pour le projet pédagogique de la crèche"}</p>
                 {((codeUser == "DR") || (codeUser == "DA")) && (
-                  <div className={mainProfessionnnelStyle.btnModifierContainer}>
-                    <div className={mainProfessionnnelStyle.btnModifier_and_btnSupprimer_container}>
-                      <button className={mainProfessionnnelStyle.btnModifier} onClick={handleClickBtnModifierProjetPedagogique}>Modifier</button>
+                  <div className={mainPrincipalStyle.btnModifierContainer}>
+                    <div className={mainPrincipalStyle.btnModifier_and_btnSupprimer_container}>
+                      <button className={mainPrincipalStyle.btnModifier} onClick={handleClickBtnModifierProjetPedagogique}>Modifier</button>
                     </div>
                   </div>
                 )}
               </div>
-              <div className={mainProfessionnnelStyle.reglement_container}>
+              <div className={mainPrincipalStyle.reglement_container}>
                 <h2>Réglement intérieur</h2>
                 <p>{reglementTexte ? reglementTexte : "Pas de texte pour le règlement intérieur"}</p>
                 {((codeUser == "DR") || (codeUser == "DA")) && (
-                  <div className={mainProfessionnnelStyle.btnModifierContainer}>
-                    <div className={mainProfessionnnelStyle.btnModifier_and_btnSupprimer_container}>
-                      <button className={mainProfessionnnelStyle.btnModifier} onClick={handleClickBtnModifierReglement}>Modifier</button>
+                  <div className={mainPrincipalStyle.btnModifierContainer}>
+                    <div className={mainPrincipalStyle.btnModifier_and_btnSupprimer_container}>
+                      <button className={mainPrincipalStyle.btnModifier} onClick={handleClickBtnModifierReglement}>Modifier</button>
                     </div>
                   </div>
                 )}
