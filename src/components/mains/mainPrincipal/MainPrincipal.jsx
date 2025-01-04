@@ -85,7 +85,7 @@ export default function MainPrincipal() {
     navigate('/updateReglement');
   }
 
-  function handleClickBtnAjouterTextes() {
+  function handleClickBtnAjouterTextesAdmin() {
     navigate('/addTextesAdmin');
   }
 
@@ -97,7 +97,25 @@ export default function MainPrincipal() {
         <div>
           {messageToDisplay != "" && (<p style={{ color: `${successMessage ? "green" : "red"}`, padding: 10 }}>{messageToDisplay}</p>)}
           {(!isloadingData && presentationTexte == null && projetPedagogiqueTexte == null && reglementTexte == null) 
-          ? <button className={mainPrincipalStyle.btnAjouter} onClick={handleClickBtnAjouterTextes}>Ajouter les textes</button>
+          ? <div>
+              <div className={mainPrincipalStyle.presentation_container}>
+                <h2>Présentation de la crèche</h2>
+                <p className={mainPrincipalStyle.messageToDisplayIfNoTexte}>Pas de texte de présentation de la crèche</p>
+              </div>
+              <div className={mainPrincipalStyle.pedagogique_container}>
+                <h2>Projet pédagogique de la crèche</h2>
+                <p className={mainPrincipalStyle.messageToDisplayIfNoTexte}>Pas de texte pour le projet pédagogique de la crèche</p>
+              </div>
+              <div className={mainPrincipalStyle.reglement_container}>
+                <h2>Réglement intérieur</h2>
+                <p className={mainPrincipalStyle.messageToDisplayIfNoTexte}>Pas de texte pour le règlement intérieur</p>
+              </div>
+              {((codeUser == "DR") || (codeUser == "DA")) && (
+                  <div className={mainPrincipalStyle.btnAjouterContainer}>
+                    <button className={mainPrincipalStyle.btnAjouter} onClick={handleClickBtnAjouterTextesAdmin}>Ajouter les textes</button>
+                  </div>
+                )}
+            </div>
           : <div>
               <div className={mainPrincipalStyle.presentation_container}>
                 <h2>Présentation de la crèche</h2>
