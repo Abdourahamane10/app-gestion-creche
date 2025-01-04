@@ -51,9 +51,9 @@ export default function MainPrincipal() {
     })
     .then(responseData => {
       setAPIState({loading: false, error: false, data: responseData});
-      const text_presentation = responseData.data[0].presentation
-      const text_projetPedagogique = responseData.data[0].projet_pedagogique;
-      const text_reglementInterieur = responseData.data[0].reglement_interieur;
+      const text_presentation = responseData.data[0]?.presentation
+      const text_projetPedagogique = responseData.data[0]?.projet_pedagogique;
+      const text_reglementInterieur = responseData.data[0]?.reglement_interieur;
       dispatch(presentationReducer(text_presentation));
       dispatch(projetPedagogiqueReducer(text_projetPedagogique));
       dispatch(reglementReducer(text_reglementInterieur));
@@ -96,12 +96,12 @@ export default function MainPrincipal() {
       (
         <div>
           {messageToDisplay != "" && (<p style={{ color: `${successMessage ? "green" : "red"}`, padding: 10 }}>{messageToDisplay}</p>)}
-          {(!isloadingData && presentationTexte == "" && projetPedagogiqueTexte == "" && reglementTexte == "") 
+          {(!isloadingData && presentationTexte == null && projetPedagogiqueTexte == null && reglementTexte == null) 
           ? <button className={mainPrincipalStyle.btnAjouter} onClick={handleClickBtnAjouterTextes}>Ajouter les textes</button>
           : <div>
               <div className={mainPrincipalStyle.presentation_container}>
                 <h2>Présentation de la crèche</h2>
-                <p>{presentationTexte ? presentationTexte : "Pas de texte de présentation de la crèche"}</p>
+                <p>{presentationTexte ? presentationTexte : <span className={mainPrincipalStyle.messageToDisplayIfNoTexte}>Pas de texte de présentation de la crèche</span>}</p>
                 {((codeUser == "DR") || (codeUser == "DA")) && (
                   <div className={mainPrincipalStyle.btnModifierContainer}>
                     <div className={mainPrincipalStyle.btnModifier_and_btnSupprimer_container}>
@@ -112,7 +112,7 @@ export default function MainPrincipal() {
               </div>
               <div className={mainPrincipalStyle.pedagogique_container}>
                 <h2>Projet pédagogique de la crèche</h2>
-                <p>{projetPedagogiqueTexte ? projetPedagogiqueTexte : "Pas de texte pour le projet pédagogique de la crèche"}</p>
+                <p>{projetPedagogiqueTexte ? projetPedagogiqueTexte : <span className={mainPrincipalStyle.messageToDisplayIfNoTexte}>Pas de texte pour le projet pédagogique de la crèche</span>}</p>
                 {((codeUser == "DR") || (codeUser == "DA")) && (
                   <div className={mainPrincipalStyle.btnModifierContainer}>
                     <div className={mainPrincipalStyle.btnModifier_and_btnSupprimer_container}>
@@ -123,7 +123,7 @@ export default function MainPrincipal() {
               </div>
               <div className={mainPrincipalStyle.reglement_container}>
                 <h2>Réglement intérieur</h2>
-                <p>{reglementTexte ? reglementTexte : "Pas de texte pour le règlement intérieur"}</p>
+                <p>{reglementTexte ? reglementTexte : <span className={mainPrincipalStyle.messageToDisplayIfNoTexte}>Pas de texte pour le règlement intérieur</span>}</p>
                 {((codeUser == "DR") || (codeUser == "DA")) && (
                   <div className={mainPrincipalStyle.btnModifierContainer}>
                     <div className={mainPrincipalStyle.btnModifier_and_btnSupprimer_container}>
