@@ -36,12 +36,15 @@
   display: block;
 }
 
-.btnAjouter {
-  margin: 50px auto;
+.btnAjouterContainer {
+  display: flex;
+  margin-top: 20px;
+  justify-content: center;
 }
 
 .messageToDisplayIfNoTexte {
   color: gray;
+  text-align: center;
 }
 
   
