@@ -13,9 +13,6 @@ import UpdateProjetPedagogique from "./pages/direction/projetPedagogique/UpdateP
 import UpdateReglement from "./pages/direction/reglement/UpdateReglement"
 import Sections from "./pages/direction/sections/Sections"
 import AddSection from "./pages/direction/sections/addSection/AddSection"
-import AddPresentation from "./pages/direction/presentation/AddPresentation"
-import AddProjetPedagogique from "./pages/direction/projetPedagogique/AddProjetPedagogique"
-import AddReglement from "./pages/direction/reglement/AddReglement"
 
 export default function AppContent() {
     const codeUser = useSelector(state => state.auth.codeUser);
@@ -45,9 +42,6 @@ export default function AppContent() {
               <Route path="updateReglement" element={<UpdateReglement />} />
               <Route path="/sections" element={<Sections />} />
               <Route path="/addSection" element={<AddSection />} />
-              <Route path="/addPresentation" element={<AddPresentation />} />
-              <Route path="/addProjetPedagogique" element={<AddProjetPedagogique />} />
-              <Route path="/addReglement" element={<AddReglement />} />
             </Routes>
           </main>
           <Footer />
