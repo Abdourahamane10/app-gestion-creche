@@ -24,6 +24,8 @@ export default function MainPrincipal() {
     data: undefined
   });
 
+  const [existeParametreGeneral, setExisteParametreGeneral] = useState(true);
+
   const navigate = useNavigate();
 
   const [isloadingData, setIsLoadingData] = useState(true);
@@ -51,6 +53,10 @@ export default function MainPrincipal() {
     })
     .then(responseData => {
       setAPIState({loading: false, error: false, data: responseData});
+      if(responseData.data.length == 0) {
+        setExisteParametreGeneral(false);
+      }
+    
       const text_presentation = responseData.data[0]?.presentation
       const text_projetPedagogique = responseData.data[0]?.projet_pedagogique;
       const text_reglementInterieur = responseData.data[0]?.reglement_interieur;
@@ -96,7 +102,7 @@ export default function MainPrincipal() {
       (
         <div>
           {messageToDisplay != "" && (<p style={{ color: `${successMessage ? "green" : "red"}`, padding: 10 }}>{messageToDisplay}</p>)}
-          {(!isloadingData && presentationTexte == null && projetPedagogiqueTexte == null && reglementTexte == null) 
+          {(!isloadingData && !existeParametreGeneral) 
           ? <div>
               <div className={mainPrincipalStyle.presentation_container}>
                 <h2>Présentation de la crèche</h2>
