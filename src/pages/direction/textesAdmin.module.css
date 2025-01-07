@@ -20,15 +20,10 @@ form {
     padding: 20px;
 }
 
-.btnAjouterTextes_container {
-    margin-top: 20px;
-    display: flex;
-}
-
 .btnAjouterTextes {
+    display: block;
     margin-left: auto;
     background-color: var(--primary-color);
-    width: 100px;
 }
 
 .formTextesAdmin_item {
