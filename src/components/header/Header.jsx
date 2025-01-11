@@ -73,7 +73,7 @@ export default function Header() {
         listeSections.length > 0 && (
             <div className={headerStyle.sections_container}>
               {listeSections.map((section) => (
-                <Link to="#" key={section.id}>
+                <Link to={`/section/${section.id}`} key={section.id}>
                 <span className={headerStyle.sectionName}>{section.nom_section}</span>
                 <span className={headerStyle.sectionCount}>{section.enfants.length}</span>
                 </Link>
