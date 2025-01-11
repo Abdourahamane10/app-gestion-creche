@@ -14,6 +14,7 @@ import UpdateReglement from "./pages/direction/reglement/UpdateReglement"
 import Sections from "./pages/direction/sections/Sections"
 import AddSection from "./pages/direction/sections/addSection/AddSection"
 import AddTextesAdmin from "./pages/direction/AddTextesAdmin"
+import SectionItem from "./pages/direction/sections/sectionItem/SectionItem"
 
 export default function AppContent() {
     const codeUser = useSelector(state => state.auth.codeUser);
@@ -44,6 +45,7 @@ export default function AppContent() {
               <Route path="/sections" element={<Sections />} />
               <Route path="/addSection" element={<AddSection />} />
               <Route path="/addTextesAdmin" element={<AddTextesAdmin />} />
+              <Route path="/section/:id" element={<SectionItem />} />
             </Routes>
           </main>
           <Footer />
