@@ -1,9 +1,59 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import DeconnexionBtn from "../boutons/deconnexionBtn/DeconnexionBtn"
 import SideBar from "../sideBar/SideBar"
 import headerStyle from "./Header.module.css"
+import { getSectionReducer } from "../../features/sectionSlice";
+import indexStyle from '../../index.module.css';
+
 export default function Header() {
+
+  const token = useSelector(state => state.auth.token);
+
+  const listeSections = useSelector(state => state.listeSections.sections);
+
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+
+  const [APIState, setAPIState] = useState({
+    loading: false,
+    error: false,
+    data: undefined
+  });
+
+  useEffect(() => {
+    setAPIState({loading: true, error: false, data: undefined});
+    fetch("http://127.0.0.1:8000/api/section", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      }
+    })
+    .then(response => {
+      if(!response.ok) {
+        if(response.status == 401){
+          navigate('/');
+        }
+        return response.json().then(messageError => {
+          throw Error(messageError.message || messageError.error || "Erreur inattendu");
+        });
+      }
+      return response.json();
+    })
+    .then(responseData => {
+      const sections = responseData.data;
+      dispatch(getSectionReducer(sections));
+      setAPIState({loading: false, error: false, data: responseData});
+    })
+    .catch(() => {
+      setAPIState({loading: false, error: true, data: undefined});
+    })
+  }, [token, navigate, dispatch]);
+
   return (
     <>
     <header className={headerStyle.headerPrincipal}>
@@ -13,21 +63,23 @@ export default function Header() {
                 <img src="icones/envelope-icon.jpg" alt="toggle menu" />
             </button>
         </div>
-        <div className={headerStyle.sections_container}>
-          {/* On utilisera <Link to="url"> au lieu des <a></a> pour éviter les rechargement de la page */}
-          <Link to="#">
-            <span className={headerStyle.sectionName}>Section1</span>
-            <span className={headerStyle.sectionCount}>12</span>
-          </Link>
-          <Link to="#">
-            <span className={headerStyle.sectionName}>Section2</span>
-            <span className={headerStyle.sectionCount}>20</span>
-          </Link>
-          <Link to="#">
-            <span className={headerStyle.sectionName}>Section3</span>
-            <span className={headerStyle.sectionCount}>15</span>
-          </Link>
-        </div>
+        {APIState.loading 
+        ? (
+            <div className={headerStyle.sections_container}>
+              <img className={indexStyle.spinner} style={{ color: "blue" }} src="/icones/spinner.svg" />
+            </div>
+          )
+        :
+        listeSections.length > 0 && (
+            <div className={headerStyle.sections_container}>
+              {listeSections.map((section) => (
+                <Link to="#" key={section.id}>
+                <span className={headerStyle.sectionName}>{section.nom_section}</span>
+                <span className={headerStyle.sectionCount}>{section.enfants.length}</span>
+                </Link>
+              ))}
+            </div>
+        )}
         <DeconnexionBtn />
     </header>
     </>
