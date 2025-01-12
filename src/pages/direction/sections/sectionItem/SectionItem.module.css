@@ -1,0 +1,57 @@
+.btnContainer {
+    display: flex;
+}
+
+/* .container {
+    background-color:aqua;
+} */
+
+.loadingContainer {
+    text-align: center;
+}
+
+.ongletItem {
+    width: 100%;
+    cursor: pointer;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 10px 0;
+    border: 1px solid var(--dark-color);
+    background-color: var(--light-color);
+}
+
+.ongletItem:not(:last-child) {
+    border-right: none;
+}
+
+.photosContainer {
+    border-left: 1px solid var(--dark-color);
+    border-right: 1px solid var(--dark-color);
+    border-bottom: 1px solid var(--dark-color);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 20px;
+    justify-items: center;
+    align-items: center;
+}
+
+.img_enfant_employe {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.photoItem {
+    width: min-content;
+    padding: 10px;
+}
+
+.prenomItem {
+    text-align: center;
+}
