@@ -60,7 +60,7 @@ export default function Header() {
         <SideBar />
         <div className={headerStyle.toggler_container}>
             <button>
-                <img src="icones/envelope-icon.jpg" alt="toggle menu" />
+                <img src="/icones/envelope-icon.jpg" alt="toggle menu" />
             </button>
         </div>
         {APIState.loading 
