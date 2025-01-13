@@ -59,7 +59,7 @@ export default function SectionItem() {
 
   return (
     <div className={sectionItemStyle.container}>
-        <div className={sectionItemStyle.btnContainer}>
+        <div className={sectionItemStyle.ongletContainer}>
                 <div onClick={() => setSelectedElementTab(0)} className={sectionItemStyle.ongletItem}>Enfants</div>
                 {((codeUser == "DR") || (codeUser == "DA")) && 
                 <div onClick={() => setSelectedElementTab(1)} className={sectionItemStyle.ongletItem}>Employés</div>
