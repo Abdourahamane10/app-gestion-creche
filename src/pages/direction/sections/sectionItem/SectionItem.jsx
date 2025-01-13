@@ -65,7 +65,7 @@ export default function SectionItem() {
             {APIState.loading 
             ? 
             <div className={sectionItemStyle.loadingContainer}>
-                <img className={indexStyle.spinner} style={{ color: "gray" }} src="/icones/spinner.svg" />
+                <img className={indexStyle.spinner} style={{ backgroundColor: "gray" }} src="/icones/spinner.svg" />
             </div>
             :
             tabContentSection[selectedElementTab].map(obj => (
