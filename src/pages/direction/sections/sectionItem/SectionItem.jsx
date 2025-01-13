@@ -62,7 +62,7 @@ export default function SectionItem() {
         <div className={sectionItemStyle.ongletContainer}>
                 <div onClick={() => setSelectedElementTab(0)} className={sectionItemStyle.ongletItem}>Enfants</div>
                 {((codeUser == "DR") || (codeUser == "DA")) && 
-                <div onClick={() => setSelectedElementTab(1)} className={sectionItemStyle.ongletItem}>Employés</div>
+                (<div onClick={() => setSelectedElementTab(1)} className={sectionItemStyle.ongletItem}>Employés</div>)
                 }
         </div>
         <div className={sectionItemStyle.photosContainer}>
@@ -82,6 +82,14 @@ export default function SectionItem() {
             ))
             }
         </div>
+        {selectedElementTab == 0 && 
+        (<div className={sectionItemStyle.btnAjouter_enfant_employe_container}>
+            <button className={sectionItemStyle.btnAjouter_enfant_employe}>Ajouter un enfant</button>
+        </div>)}
+        {selectedElementTab == 1 && 
+        (<div className={sectionItemStyle.btnAjouter_enfant_employe_container}>
+            <button className={sectionItemStyle.btnAjouter_enfant_employe}>Ajouter un employé</button>
+        </div>)}
     </div>
   )
 }
