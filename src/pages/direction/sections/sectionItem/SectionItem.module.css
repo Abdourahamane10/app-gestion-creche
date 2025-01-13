@@ -2,10 +2,6 @@
     display: flex;
 }
 
-/* .container {
-    background-color:aqua;
-} */
-
 .loadingContainer {
     text-align: center;
 }
@@ -54,4 +50,14 @@
 
 .prenomItem {
     text-align: center;
+}
+
+.btnAjouter_enfant_employe {
+    margin-left: auto;
+    background-color: var(--primary-color);
+}
+
+.btnAjouter_enfant_employe_container {
+    display: flex;
+    margin-top: 20px;
 }
