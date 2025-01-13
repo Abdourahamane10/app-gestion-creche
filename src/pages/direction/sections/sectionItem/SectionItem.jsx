@@ -25,6 +25,8 @@ export default function SectionItem() {
 
     const [selectedElementTab, setSelectedElementTab] = useState(0);
 
+    const codeUser = useSelector(state => state.auth.codeUser);
+
     useEffect(() => {
         setAPIState({loading: true, error: false, data: undefined});
         fetch(`http://127.0.0.1:8000/api/section/${idSection}`, {
@@ -59,7 +61,9 @@ export default function SectionItem() {
     <div className={sectionItemStyle.container}>
         <div className={sectionItemStyle.btnContainer}>
                 <div onClick={() => setSelectedElementTab(0)} className={sectionItemStyle.ongletItem}>Enfants</div>
+                {((codeUser == "DR") || (codeUser == "DA")) && 
                 <div onClick={() => setSelectedElementTab(1)} className={sectionItemStyle.ongletItem}>Employés</div>
+                }
         </div>
         <div className={sectionItemStyle.photosContainer}>
             {APIState.loading 
