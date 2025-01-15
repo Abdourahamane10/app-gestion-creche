@@ -27,6 +27,10 @@ export default function SectionItem() {
 
     const codeUser = useSelector(state => state.auth.codeUser);
 
+    function handleClickBtnAjouterEnfant() {
+        navigate('/addEnfant');
+    }
+
     useEffect(() => {
         setAPIState({loading: true, error: false, data: undefined});
         fetch(`http://127.0.0.1:8000/api/section/${idSection}`, {
@@ -84,7 +88,7 @@ export default function SectionItem() {
         </div>
         {selectedElementTab == 0 && 
         (<div className={sectionItemStyle.btnAjouter_enfant_employe_container}>
-            <button className={sectionItemStyle.btnAjouter_enfant_employe}>Ajouter un enfant</button>
+            <button className={sectionItemStyle.btnAjouter_enfant_employe} onClick={handleClickBtnAjouterEnfant}>Ajouter un enfant</button>
         </div>)}
         {selectedElementTab == 1 && 
         (<div className={sectionItemStyle.btnAjouter_enfant_employe_container}>
