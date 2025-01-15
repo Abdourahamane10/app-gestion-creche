@@ -135,6 +135,11 @@ export default function AddEnfant() {
                 <label htmlFor="sortieVendredi">Heure de sortie vendredi</label>
                 <input id="sortieVendredi" name='sortieVendredi' type="time" value={heureSelected.sortieVendredi} onChange={handleChangeHeure} />
             </div>
+            <div className={`${addEnfantStyle.inputContainer} ${addEnfantStyle.photoInputContainer}`}>
+                <label htmlFor="photo">Photo</label>
+                <input id="photo" type="file" />
+            </div>
+            <button className={addEnfantStyle.btnValider}>Valider</button>
         </form>
     </div>
   )
