@@ -1,0 +1,25 @@
+.title {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.addEnfantSelect {
+    margin-bottom: 15px;
+}
+
+.checkboxContainer {
+    display: flex;
+    gap: 8px;
+}
+
+.dateNaissanceContainer {
+    margin-bottom: 15px;
+}
+
+.heureContainerInput {
+    margin-top: 15px;
+}
+
+.heureContainerInput input {
+    width: 150px;
+}
