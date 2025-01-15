@@ -15,6 +15,7 @@ import Sections from "./pages/direction/sections/Sections"
 import AddSection from "./pages/direction/sections/addSection/AddSection"
 import AddTextesAdmin from "./pages/direction/AddTextesAdmin"
 import SectionItem from "./pages/direction/sections/sectionItem/SectionItem"
+import AddEnfant from "./pages/direction/sections/enfant/AddEnfant"
 
 export default function AppContent() {
     const codeUser = useSelector(state => state.auth.codeUser);
@@ -46,6 +47,7 @@ export default function AppContent() {
               <Route path="/addSection" element={<AddSection />} />
               <Route path="/addTextesAdmin" element={<AddTextesAdmin />} />
               <Route path="/section/:id" element={<SectionItem />} />
+              <Route path="/addEnfant" element={<AddEnfant />} />
             </Routes>
           </main>
           <Footer />
