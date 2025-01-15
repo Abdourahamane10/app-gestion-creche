@@ -23,3 +23,15 @@
 .heureContainerInput input {
     width: 150px;
 }
+
+.btnValider {
+    display: block;
+    margin-left: auto;
+    background-color: var(--success-color);
+    margin-top: 20px;
+    min-width: 100px;
+}
+
+.photoInputContainer {
+    margin-top: 15px;
+}
