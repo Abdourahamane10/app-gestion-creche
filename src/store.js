@@ -4,6 +4,7 @@ import authReducer from './features/authSlice';
 import textesAdminReducer from './features/textesAdminSlice';
 import sectionsReducer from './features/sectionSlice';
 import employesReducer from './features/employeSlice';
+import categoriAgeReducer from './features/categorieAgeSlice';
 
 
 export const store = configureStore({
@@ -11,6 +12,7 @@ export const store = configureStore({
         auth: authReducer,
         textesAdmin: textesAdminReducer,
         listeSections: sectionsReducer,
-        employes:  employesReducer
+        employes:  employesReducer,
+        categoriesAge: categoriAgeReducer
     }
 });
