@@ -28,7 +28,7 @@ export default function SectionItem() {
     const codeUser = useSelector(state => state.auth.codeUser);
 
     function handleClickBtnAjouterEnfant() {
-        navigate('/addEnfant');
+        navigate('/addEnfant', {state: {idSection}});
     }
 
     useEffect(() => {
