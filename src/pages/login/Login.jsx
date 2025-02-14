@@ -36,7 +36,7 @@ export default function Login() {
 
     setAPIState({...APIState, loading: true});
 
-    fetch("http://127.0.0.1:8000/api/loginSociete", {
+    fetch(`${import.meta.env.VITE_API_SERV}/api/loginSociete`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'

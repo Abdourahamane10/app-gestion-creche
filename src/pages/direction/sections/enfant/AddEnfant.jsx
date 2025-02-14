@@ -83,7 +83,7 @@ export default function AddEnfant() {
 
     useEffect(() => {
         if(parents.length === 0) {
-            fetch("http://127.0.0.1:8000/api/parent", {
+            fetch(`${import.meta.env.VITE_API_SERV}/api/parent`, {
                 method: "GET",
                 headers: {
                     'Content-Type': 'application/json',
@@ -113,7 +113,7 @@ export default function AddEnfant() {
 
     useEffect(() => {
         if(categoriesAge.length === 0) {
-            fetch("http://127.0.0.1:8000/api/categorieAge", {
+            fetch(`${import.meta.env.VITE_API_SERV}/api/categorieAge`, {
                 method: "GET",
                 headers: {
                     'Content-Type': 'application/json',
@@ -201,7 +201,7 @@ export default function AddEnfant() {
         formData.append("parents", JSON.stringify(parentsSelected));       
 
         setAPIStatePOST({loading: true, error: false, data: undefined});
-        fetch("http://127.0.0.1:8000/api/enfant", {
+        fetch(`${import.meta.env.VITE_API_SERV}/api/enfant`, {
             method: "POST",
             headers: {
                 'Authorization': `Bearer ${token}`,

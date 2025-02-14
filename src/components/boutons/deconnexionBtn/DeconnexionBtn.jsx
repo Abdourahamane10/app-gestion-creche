@@ -22,7 +22,7 @@ export default function DeconnexionBtn() {
 
     setApiDeconnexionState({...apiDeconnexionState, loading: true});
 
-    fetch("http://127.0.0.1:8000/api/logout", {
+    fetch(`${import.meta.env.VITE_API_SERV}/api/logout`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

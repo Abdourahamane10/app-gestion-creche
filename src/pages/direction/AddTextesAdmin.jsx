@@ -34,7 +34,7 @@ export default function AddTextesAdmin() {
   function handleSubmitAddTextesAdmin(event) {
     event.preventDefault();
     setAPIState({...APIState, loading: true});
-    fetch('http://127.0.0.1:8000/api/parametresGeneraux', {
+    fetch(`${import.meta.env.VITE_API_SERV}/api/parametresGeneraux`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -23,7 +23,7 @@ export default function Sections() {
 
     useEffect(() => {
       setSectionAPIState({loading: true, error: false, data: undefined});
-      fetch("http://127.0.0.1:8000/api/section", {
+      fetch(`${import.meta.env.VITE_API_SERV}/api/section`, {
         method: "GET",
         headers: {
           'Content-Type': 'application/json',

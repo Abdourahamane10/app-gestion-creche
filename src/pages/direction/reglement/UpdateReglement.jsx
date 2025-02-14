@@ -38,7 +38,7 @@ export default function UpdateReglement() {
 
   useEffect(() => {
     setGETAPIState({loading: true, error: false, data: undefined});
-    fetch("http://127.0.0.1:8000/api/parametresGeneraux", {
+    fetch(`${import.meta.env.VITE_API_SERV}/api/parametresGeneraux`, {
       method: "GET",
       headers: {
         'Content-Type': 'application/json',
@@ -75,7 +75,7 @@ export default function UpdateReglement() {
   function handleSubmit(e) {
     e.preventDefault();
     setPATCHAPIState({loading: true, error: false, data: undefined});
-    fetch(`http://127.0.0.1:8000/api/parametresGeneraux/${parametresGenerauxId}`, {
+    fetch(`${import.meta.env.VITE_API_SERV}/api/parametresGeneraux/${parametresGenerauxId}`, {
       method: "PATCH",
       headers: {
         'Content-Type': 'application/json',

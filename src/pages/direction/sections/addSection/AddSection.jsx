@@ -58,7 +58,7 @@ export default function AddSection() {
 
   useEffect(() => {
     setIsLoadingEmployes(true);
-    fetch("http://127.0.0.1:8000/api/employe", {
+    fetch(`${import.meta.env.VITE_API_SERV}/api/employe`, {
       method: "GET",
       headers: {
         'Content-Type': 'application/json',
@@ -96,7 +96,7 @@ export default function AddSection() {
   {
     event.preventDefault();
     setAPIState({...APIState, loading: true});
-    fetch("http://127.0.0.1:8000/api/section", {
+    fetch(`${import.meta.env.VITE_API_SERV}/api/section`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',

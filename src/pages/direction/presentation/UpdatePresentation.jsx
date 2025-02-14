@@ -38,7 +38,7 @@ export default function UpdatePresentation() {
   //Mise à jour du state presentationTexte après le chargement du composant
   useEffect(() => {
     setGETAPIState({loading: true, error: false, data: undefined});
-    fetch("http://127.0.0.1:8000/api/parametresGeneraux",{
+    fetch(`${import.meta.env.VITE_API_SERV}/api/parametresGeneraux`,{
       method: "GET",
       headers: {
         'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ export default function UpdatePresentation() {
   function handleSubmit(event) {
     event.preventDefault();
     setPATCHAPIState({...PATCHAPIState, loading: true})
-    fetch(`http://127.0.0.1:8000/api/parametresGeneraux/${parametresGenerauxId}`,{
+    fetch(`${import.meta.env.VITE_API_SERV}/api/parametresGeneraux/${parametresGenerauxId}`,{
       method: "PATCH",
       headers: {
         'Content-Type': 'application/json',
