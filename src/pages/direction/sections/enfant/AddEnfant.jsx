@@ -161,9 +161,10 @@ export default function AddEnfant() {
     const [messageSuccess, setMessageSucces] = useState(true);
     
     function handleParentsChange(optionsSelected) {
-        if (!optionsSelected) {
+        if (!optionsSelected || optionsSelected.length === 0) {
             setParentsSelected([]);
         } else {
+            // On mappe directement les ids des parents
             const tIdParentsSelected = optionsSelected.map(option => option.value);
             setParentsSelected(tIdParentsSelected);
         }
@@ -171,41 +172,42 @@ export default function AddEnfant() {
 
     function handleSubmit(event) {
         event.preventDefault();
+        const formData = new FormData();
+        formData.append("nomEnfant", infosEnfant.nom);
+        formData.append("prenomEnfant", infosEnfant.prenom);
+        formData.append("dateNaissanceEnfant", infosEnfant.dateNaissance.replace(/\//g, "-"));
+        formData.append("sexeEnfant", sexeSelected);
+        formData.append("dateInscription", new Date().toISOString().split('T')[0]);
+        formData.append("feculent", checkboxesAliments.feculents);
+        formData.append("legume", checkboxesAliments.legumes);
+        formData.append("fruit", checkboxesAliments.fruits);
+        formData.append("poulet", checkboxesAliments.poulet);
+        formData.append("viande", checkboxesAliments.viande);
+        formData.append("poisson", checkboxesAliments.poisson);
+        formData.append("porc", checkboxesAliments.porc);
+        formData.append("idSection", idSection);
+        formData.append("heureArriveeLundi", `${infosEnfant.arriveeLundi}`);
+        formData.append("heureArriveeMardi", `${infosEnfant.arriveeMardi}`);
+        formData.append("heureArriveeMercredi", `${infosEnfant.arriveeMercredi}`);
+        formData.append("heureArriveeJeudi", `${infosEnfant.arriveeJeudi}`);
+        formData.append("heureArriveeVendredi", `${infosEnfant.arriveeVendredi}`);
+        formData.append("heureSortieLundi", `${infosEnfant.sortieLundi}`);
+        formData.append("heureSortieMardi", `${infosEnfant.sortieMardi}`);
+        formData.append("heureSortieMercredi", `${infosEnfant.sortieMercredi}`);
+        formData.append("heureSortieJeudi", `${infosEnfant.sortieJeudi}`);
+        formData.append("heureSortieVendredi", `${infosEnfant.sortieVendredi}`);
+        formData.append("idCategorieAge", categorieAgeSelected);
+        formData.append("photoEnfant", infosEnfant.photo);
+        formData.append("parents", JSON.stringify(parentsSelected));       
+
         setAPIStatePOST({loading: true, error: false, data: undefined});
         fetch("http://127.0.0.1:8000/api/enfant", {
             method: "POST",
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${token}`,
+                "Accept": "application/json"
             },
-            body: JSON.stringify({
-                nomEnfant: infosEnfant.nom,
-                prenomEnfant: infosEnfant.prenom,
-                dateNaissanceEnfant: infosEnfant.dateNaissance.replace(/\//g, "-"),
-                sexeEnfant: sexeSelected,
-                dateInscription: new Date().toISOString().split('T')[0],
-                feculent: checkboxesAliments.feculents,
-                legume: checkboxesAliments.legumes,
-                fruit: checkboxesAliments.fruits,
-                poulet: checkboxesAliments.poulet,
-                viande: checkboxesAliments.viande,
-                poisson: checkboxesAliments.poisson,
-                porc: checkboxesAliments.porc,
-                idSection: idSection, 
-                heureArriveeLundi: `${infosEnfant.arriveeLundi}`,
-                heureArriveeMardi: `${infosEnfant.arriveeMardi}`,
-                heureArriveeMercredi: `${infosEnfant.arriveeMercredi}`,
-                heureArriveeJeudi: `${infosEnfant.arriveeJeudi}`,
-                heureArriveeVendredi: `${infosEnfant.arriveeVendredi}`,
-                heureSortieLundi: `${infosEnfant.sortieLundi}`,
-                heureSortieMardi: `${infosEnfant.sortieMardi}`,
-                heureSortieMercredi: `${infosEnfant.sortieMercredi}`,
-                heureSortieJeudi: `${infosEnfant.sortieJeudi}`,
-                heureSortieVendredi: `${infosEnfant.sortieVendredi}`,
-                idCategorieAge: categorieAgeSelected,
-                photoEnfant: infosEnfant.photo,
-                parents: parentsSelected
-            })
+            body: formData
         })
         .then(response => {
             if(!response.ok) {
@@ -239,7 +241,7 @@ export default function AddEnfant() {
 
   return (
     <div>
-        <h3 className={addEnfantStyle.title}>Ajout d&apos;un enfant</h3>
+        <h3 className={addEnfantStyle.title}>Ajout d&apos;un enfant dans la section {idSection}</h3>
         <form onSubmit={handleSubmit}>
             <div className={addEnfantStyle.inputContainer}>
                 <label htmlFor="nom">Nom</label>
@@ -369,7 +371,7 @@ export default function AddEnfant() {
             </div>
             <div className={`${addEnfantStyle.inputContainer} ${addEnfantStyle.photoInputContainer}`}>
                 <label htmlFor="photo">Photo</label>
-                <input id="photo" type="file" onChange={handleChangeInfosEnfant} />
+                <input id="photo" name="photo" type="file" onChange={handleChangeInfosEnfant} />
             </div>
             <button className={addEnfantStyle.btnValider}>
                 {APIStatePOST.loading && (<img className={indexStyle.spinner} style={{ color: 'green' }} src="/icones/spinner.svg" />)}
