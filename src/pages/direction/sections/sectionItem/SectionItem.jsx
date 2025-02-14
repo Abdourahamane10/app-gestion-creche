@@ -79,7 +79,7 @@ export default function SectionItem() {
             tabContentSection[selectedElementTab].map(obj => (
                 <div key={obj.id} className={sectionItemStyle.photoItem}>
                     <Link to={selectedElementTab == 0 ? `/enfant/${obj.id}` : `/employe/${obj.id}`}>
-                    <img className={sectionItemStyle.img_enfant_employe} src={obj.photo ? `http://127.0.0.1:8000${obj.photo}` : "/PhotosProfessionnelles/Photo_defaut.jpg"} alt="photo" />
+                    <img className={sectionItemStyle.img_enfant_employe} src={obj.photo ? `http://127.0.0.1:8000${obj.photo}` : "http://127.0.0.1:8000/storage/asset/images/enfants/Photo_defaut.jpg"} alt="photo" />
                     </Link>
                     <p className={sectionItemStyle.prenomItem}>{obj.prenom}</p>
                 </div>
