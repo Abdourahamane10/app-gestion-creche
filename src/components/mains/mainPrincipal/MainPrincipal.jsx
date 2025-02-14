@@ -33,7 +33,7 @@ export default function MainPrincipal() {
   useEffect(() => {
     setIsLoadingData(true);
     setAPIState({loading: true, error: false, data: undefined});
-    fetch(`${import.meta.env.VITE_API_SERV}/api/parametresGeneraux`,{
+    fetch(`${import.meta.env.VITE_APP_SERV}/api/parametresGeneraux`,{
       method: "GET",
       headers: {
         'Content-Type': 'application/json',

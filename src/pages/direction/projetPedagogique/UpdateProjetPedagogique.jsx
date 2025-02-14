@@ -38,7 +38,7 @@ export default function UpdateProjetPedagogique() {
 
   useEffect(() => {
     setGETAPIState({loading: true, error: false, data: undefined});
-    fetch(`${import.meta.env.VITE_API_SERV}/api/parametresGeneraux`,{
+    fetch(`${import.meta.env.VITE_APP_SERV}/api/parametresGeneraux`,{
       method: "GET",
       headers: {
         'Content-Type': 'application/json',
@@ -75,7 +75,7 @@ export default function UpdateProjetPedagogique() {
   function handleSubmit(e) {
     e.preventDefault();
     setPATCHAPIState({loading: true, error: false, data: undefined})
-    fetch(`${import.meta.env.VITE_API_SERV}/api/parametresGeneraux/${parametresGenerauxId}`,{
+    fetch(`${import.meta.env.VITE_APP_SERV}/api/parametresGeneraux/${parametresGenerauxId}`,{
       method: "PATCH",
       headers: {
         'Content-Type': 'application/json',

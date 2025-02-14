@@ -22,7 +22,7 @@ export default function DeconnexionBtn() {
 
     setApiDeconnexionState({...apiDeconnexionState, loading: true});
 
-    fetch(`${import.meta.env.VITE_API_SERV}/api/logout`, {
+    fetch(`${import.meta.env.VITE_APP_SERV}/api/logout`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

@@ -36,7 +36,7 @@ export default function Login() {
 
     setAPIState({...APIState, loading: true});
 
-    fetch(`${import.meta.env.VITE_API_SERV}/api/loginSociete`, {
+    fetch(`${import.meta.env.VITE_APP_SERV}/api/loginSociete`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'

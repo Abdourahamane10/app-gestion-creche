@@ -33,7 +33,7 @@ export default function SectionItem() {
 
     useEffect(() => {
         setAPIState({loading: true, error: false, data: undefined});
-        fetch(`${import.meta.env.VITE_API_SERV}/api/section/${idSection}`, {
+        fetch(`${import.meta.env.VITE_APP_SERV}/api/section/${idSection}`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
@@ -79,7 +79,7 @@ export default function SectionItem() {
             tabContentSection[selectedElementTab].map(obj => (
                 <div key={obj.id} className={sectionItemStyle.photoItem}>
                     <Link to={selectedElementTab == 0 ? `/enfant/${obj.id}` : `/employe/${obj.id}`}>
-                    <img className={sectionItemStyle.img_enfant_employe} src={obj.photo ? `${import.meta.env.VITE_API_SERV}${obj.photo}` : `${import.meta.env.VITE_API_SERV}/storage/asset/images/enfants/Photo_defaut.jpg`} alt="photo" />
+                    <img className={sectionItemStyle.img_enfant_employe} src={obj.photo ? `${import.meta.env.VITE_APP_SERV}${obj.photo}` : `${import.meta.env.VITE_APP_SERV}/storage/asset/images/enfants/Photo_defaut.jpg`} alt="photo" />
                     </Link>
                     <p className={sectionItemStyle.prenomItem}>{obj.prenom}</p>
                 </div>

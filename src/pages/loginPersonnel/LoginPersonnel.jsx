@@ -41,7 +41,7 @@ export default function LoginPersonnel() {
     }
     setInfosConnexionAPIState({...infosConnexionAPIState, loading: true});
 
-    fetch(`${import.meta.env.VITE_API_SERV}/api/login`, {
+    fetch(`${import.meta.env.VITE_APP_SERV}/api/login`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
