@@ -4,9 +4,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 
 import addEnfantStyle from './AddEnfant.module.css';
-import { setCategoriesAgeReducer } from '../../../../features/categorieAgeSlice';
-import { setParentsReducer } from '../../../../features/parentSlice';
-import indexStyle from '../../../../index.module.css';
+import { setCategoriesAgeReducer } from '../../../../../features/categorieAgeSlice';
+import { setParentsReducer } from '../../../../../features/parentSlice';
+import indexStyle from '../../../../../index.module.css';
 
 
 
