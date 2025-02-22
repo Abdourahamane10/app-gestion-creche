@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom"
 
 import sectionItemStyle from './SectionItem.module.css';
 import indexStyle from '../../../../index.module.css';
+import sectionStyleCommun from '../SectionStyleCommun.module.css';
 
 export default function SectionItem() {
 
@@ -64,9 +65,9 @@ export default function SectionItem() {
   return (
     <div className={sectionItemStyle.container}>
         <div className={sectionItemStyle.ongletContainer}>
-                <div onClick={() => setSelectedElementTab(0)} className={sectionItemStyle.ongletItem}>Enfants</div>
+                <div onClick={() => setSelectedElementTab(0)} className={sectionStyleCommun.ongletItem}>Enfants</div>
                 {((codeUser == "DR") || (codeUser == "DA")) && 
-                (<div onClick={() => setSelectedElementTab(1)} className={sectionItemStyle.ongletItem}>Employés</div>)
+                (<div onClick={() => setSelectedElementTab(1)} className={sectionStyleCommun.ongletItem}>Employés</div>)
                 }
         </div>
         <div className={sectionItemStyle.photosContainer}>
