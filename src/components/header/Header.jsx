@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import DeconnexionBtn from "../boutons/deconnexionBtn/DeconnexionBtn"
@@ -23,6 +23,13 @@ export default function Header() {
     error: false,
     data: undefined
   });
+
+  const [idSectionNavigated, setIdSectionNavigated] = useState(0);
+  const divsRefs = useRef([]);
+
+  function handleClickSection(idSection) {
+    setIdSectionNavigated(idSection);
+  }
 
   useEffect(() => {
     setAPIState({loading: true, error: false, data: undefined});
@@ -72,8 +79,8 @@ export default function Header() {
         :
         listeSections.length > 0 && (
             <div className={headerStyle.sections_container}>
-              {listeSections.map((section) => (
-                <NavLink className={({ isActive }) => isActive ? headerStyle.activeLink : ""} to={`/section/${section.id}`} key={section.id}>
+              {listeSections.map((section, index) => (
+                <NavLink onClick={() => handleClickSection(section.id)} ref={(el) => (divsRefs.current[index] = el)} className={idSectionNavigated === section.id ? headerStyle.activeLink : ""} to={`/section/${section.id}`} key={section.id}>
                 <span className={headerStyle.sectionName}>Section {section.nom_section}</span>
                 <span className={headerStyle.sectionCount}>{section.enfants.length}</span>
                 </NavLink>
