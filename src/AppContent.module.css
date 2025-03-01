@@ -11,7 +11,7 @@
   @media (max-width: 480px) {
     /* Styles spécifiques pour les téléphones en mode portrait */
     .main_container {
-      max-width: 300px;
+      max-width: 350px;
       padding: calc(70px + 170px) 20px 50px;
     }
   }
