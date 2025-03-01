@@ -46,7 +46,7 @@
 
 @media (min-width: 344px) and (max-width: 767px) {
     .sections_container a {
-        margin-right: 15px;
+        margin-right: 10px;
         font-size: 14px;
     }
     .headerPrincipal .toggler_container {
