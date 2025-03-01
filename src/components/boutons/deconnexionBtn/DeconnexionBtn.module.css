@@ -9,6 +9,7 @@
 @media (min-width: 344px) and (max-width: 767px) {
     .deconnexionBtn {
         font-size: 12px;
+        padding: 5px;
     } 
     .message_error_api {
         font-size: 12px;
