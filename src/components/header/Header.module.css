@@ -60,3 +60,7 @@
     }
 }
 
+.activeLink {
+    color: var(--light-orange) !important;
+}
+
