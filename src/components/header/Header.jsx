@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -73,10 +73,10 @@ export default function Header() {
         listeSections.length > 0 && (
             <div className={headerStyle.sections_container}>
               {listeSections.map((section) => (
-                <Link to={`/section/${section.id}`} key={section.id}>
+                <NavLink className={({ isActive }) => isActive ? headerStyle.activeLink : ""} to={`/section/${section.id}`} key={section.id}>
                 <span className={headerStyle.sectionName}>Section {section.nom_section}</span>
                 <span className={headerStyle.sectionCount}>{section.enfants.length}</span>
-                </Link>
+                </NavLink>
               ))}
             </div>
         )}
