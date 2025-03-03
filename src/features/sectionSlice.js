@@ -1,7 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const storedIdSectionActive = localStorage.getItem("idSectionActive");
+
 const initialState = {
-    sections: []
+    sections: [],
+    idSectionSelected: storedIdSectionActive ? Number(storedIdSectionActive) : 0
 };
 
 export const sectionSlice = createSlice({
@@ -15,10 +18,15 @@ export const sectionSlice = createSlice({
         addSectionReducer: (state, action) => {
             const section = action.payload;
             state.sections.push(section);
+        },
+        setIdSectionSelectedReducer: (state, action) => {
+            const idSectionCourante = action.payload;
+            state.idSectionSelected = idSectionCourante;
+            localStorage.setItem("idSectionActive", action.payload);
         }
     }
 });
 
-export const {getSectionReducer, addSectionReducer} = sectionSlice.actions;
+export const {getSectionReducer, addSectionReducer, setIdSectionSelectedReducer} = sectionSlice.actions;
 
 export default sectionSlice.reducer;
