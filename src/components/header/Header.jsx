@@ -7,6 +7,7 @@ import SideBar from "../sideBar/SideBar"
 import headerStyle from "./Header.module.css"
 import { getSectionReducer } from "../../features/sectionSlice";
 import indexStyle from '../../index.module.css';
+import { setIdSectionSelectedReducer } from "../../features/sectionSlice";
 
 export default function Header() {
 
@@ -24,11 +25,11 @@ export default function Header() {
     data: undefined
   });
 
-  const [idSectionNavigated, setIdSectionNavigated] = useState(0);
+  const idSectionNavigated = useSelector(state => state.listeSections.idSectionSelected);
   const divsRefs = useRef([]);
 
   function handleClickSection(idSection) {
-    setIdSectionNavigated(idSection);
+    dispatch(setIdSectionSelectedReducer(idSection));
   }
 
   useEffect(() => {
