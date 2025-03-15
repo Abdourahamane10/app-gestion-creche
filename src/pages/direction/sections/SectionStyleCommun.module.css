@@ -1,0 +1,22 @@
+.ongletItem {
+    width: 100%;
+    cursor: pointer;
+    min-height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 10px 0;
+    border: 1px solid var(--dark-color);
+    background-color: var(--light-color);
+    padding: 5px;
+}
+
+.ongletItem:not(:last-child) {
+    border-right: none;
+}
+
+.hasFocus {
+    background-color: var(--secondary-color);
+}

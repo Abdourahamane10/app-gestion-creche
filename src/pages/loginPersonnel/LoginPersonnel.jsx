@@ -74,7 +74,14 @@ export default function LoginPersonnel() {
         const codeUser = responseData.data.code_user;
         const userConnected = responseData.data.user_connected;
         dispatch(loginReducer({token, codeUser, userConnected}));
-        navigate('/accueil');
+        const lastVisitedPage = localStorage.getItem("lastVisitedPage");
+        console.log("lastVisitedPage: ", lastVisitedPage);
+        if(lastVisitedPage) {
+          navigate(lastVisitedPage);
+        }
+        else {
+          navigate('/accueil');
+        }
       }
       else {
         navigate('/');

@@ -35,6 +35,8 @@ export default function DeconnexionBtn() {
     .then(response => {
       if(!response.ok){
         if(response.status == 401){
+          // Sauvegarder la dernière route visitée avant déconnexion automatique (si déconnexion automatique)
+          localStorage.setItem("lastVisitedPage", window.location.pathname);
           //Token non valide
           navigate('/');
         }
@@ -48,6 +50,8 @@ export default function DeconnexionBtn() {
       setApiDeconnexionState({loading: false, error: false, data: responseData});
       //On remet l'id de la section courante à 0 car pour le moment on ne navigue dans aucune section
       dispatch(setIdSectionSelectedReducer(0));
+      // Si une route visitée a été enregistrée, on la supprime du localStorage avant déconnexion manuelle
+      localStorage.removeItem("lastVisitedPage");
       navigate('/');
     })
     .catch(erreur => {

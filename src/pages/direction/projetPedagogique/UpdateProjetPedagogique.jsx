@@ -48,6 +48,8 @@ export default function UpdateProjetPedagogique() {
     .then(response => {
       if(!response.ok) {
         if(response.status == 401){
+          // Sauvegarder la dernière route visitée avant déconnexion automatique (si déconnexion automatique)
+          localStorage.setItem("lastVisitedPage", window.location.pathname);
           navigate('/');
         }
         return response.json().then(messageError => {
@@ -88,6 +90,8 @@ export default function UpdateProjetPedagogique() {
     .then(response => {
       if(!response.ok){
         if(response.status == 401) {
+          // Sauvegarder la dernière route visitée avant déconnexion automatique (si déconnexion automatique)
+          localStorage.setItem("lastVisitedPage", window.location.pathname);
           navigate('/');
         }
         return response.json().then(messageError => {
