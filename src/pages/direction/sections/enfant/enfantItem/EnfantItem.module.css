@@ -1,0 +1,72 @@
+.loadingContainer {
+    text-align: center;
+}
+
+.photoContainer {
+    width: 300px;
+    padding: 10px;
+    margin: 0 auto 30px;
+    display: flex;
+    align-items: center;
+}
+
+.img_enfant_employe {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 50%;
+    text-align: center;
+    margin-right: 20px;
+}
+
+.ongletsContainer {
+    display: flex;
+    width: 100%;
+}
+
+.contentOngletContainer {
+    border-left: 1px solid var(--dark-color);
+    border-right: 1px solid var(--dark-color);
+    border-bottom: 1px solid var(--dark-color);
+    padding: 20px;
+    width: 100%;
+}
+
+.btnEnfantContainer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.btnSupprimer {
+    background-color: var(--danger-color);
+}
+
+.btnChangerSection, .btnModifier {
+    background-color: var(--info-color);
+}
+
+.repasContainer, .santeContainer, .sortie, .observationContainer {
+    margin-top: 10px;
+}
+
+.enfantContainer {
+    width: 100%;
+}
+
+.btnAjouterContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.btnAjouterContainer button {
+    background-color: var(--primary-color);
+}
+
+.data {
+    color: gray;
+    font-weight: 600;
+}
+
