@@ -1,9 +1,10 @@
 import { useState } from "react"
 import deconnexionBtnStyle from "./DeconnexionBtn.module.css"
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import indexStyle from "../../../index.module.css"
+import { setIdSectionSelectedReducer } from "../../../features/sectionSlice";
 
 export default function DeconnexionBtn() {
   const [apiDeconnexionState, setApiDeconnexionState] = useState({
@@ -17,6 +18,8 @@ export default function DeconnexionBtn() {
   const [messageErrorApi, setMessageErrorApi] = useState("");
  
   const token = useSelector(state => state.auth.token);
+
+  const dispatch = useDispatch();
 
   function handleClickBtnDeconnexion(){
 
@@ -43,6 +46,8 @@ export default function DeconnexionBtn() {
     })
     .then(responseData => {
       setApiDeconnexionState({loading: false, error: false, data: responseData});
+      //On remet l'id de la section courante à 0 car pour le moment on ne navigue dans aucune section
+      dispatch(setIdSectionSelectedReducer(0));
       navigate('/');
     })
     .catch(erreur => {
