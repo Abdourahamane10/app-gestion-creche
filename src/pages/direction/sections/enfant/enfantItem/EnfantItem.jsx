@@ -109,9 +109,11 @@ export default function EnfantItem() {
                         <h3>Observation</h3>
                         <p><span className={enfantItemStyle.data}>{APIState?.data?.transmissionMatin?.observation ? APIState?.data?.transmissionMatin?.observation : "Pas d'observation"}</span></p>
                     </div>
-                    <div className={enfantItemStyle.btnAjouterContainer}>
-                       <button onClick={handleClickAjouterTransmissionBtn}>Ajouter transmission</button>
-                    </div>
+                    {(codeUser == "AP" || codeUser == "IN" || codeUser == "EJ" || codeUser == "AE") && (
+                        <div className={enfantItemStyle.btnAjouterContainer}>
+                        <button onClick={handleClickAjouterTransmissionBtn}>Ajouter transmission</button>
+                     </div>
+                    )}
                 </div>
             )}
         </div>
