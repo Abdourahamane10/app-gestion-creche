@@ -48,8 +48,12 @@
     background-color: var(--info-color);
 }
 
-.repasContainer, .santeContainer, .sortie, .observationContainer {
+.repasContainer, .santeContainer, .sortie, .observationContainer, .autorisationsContainer {
     margin-top: 10px;
+}
+
+.autorisationsContainer {
+    margin-bottom: 20px;
 }
 
 .enfantContainer {
