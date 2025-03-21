@@ -76,7 +76,7 @@ export default function LoginPersonnel() {
         dispatch(loginReducer({token, codeUser, userConnected}));
         const lastVisitedPage = localStorage.getItem("lastVisitedPage");
         console.log("lastVisitedPage: ", lastVisitedPage);
-        if(lastVisitedPage) {
+        if(lastVisitedPage && lastVisitedPage !== "/") {
           navigate(lastVisitedPage);
         }
         else {
