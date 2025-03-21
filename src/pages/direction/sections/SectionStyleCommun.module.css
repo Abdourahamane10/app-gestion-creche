@@ -1,5 +1,5 @@
-.ongletItem {
-    width: 100%;
+.ongletItem {flex: 1;
+    /* width: 100%; */
     cursor: pointer;
     min-height: 35px;
     display: flex;
