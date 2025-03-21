@@ -24,6 +24,10 @@ export default function EnfantItem() {
         navigate('/addTransmissionMatin', {state: {enfant: APIState.data}});
     }
 
+    function handleClickBtnAjouterAutorisationParentale() {
+        navigate('/addAutorisationParentale', {state: {idEnfant: idEnfant}});
+    }
+
     useEffect(() => {
         setAPIState({loading: true, error: false, data: undefined});
         fetch(`${import.meta.env.VITE_APP_SERV}/api/enfant/${idEnfant}`, {
@@ -114,6 +118,42 @@ export default function EnfantItem() {
                         <button onClick={handleClickAjouterTransmissionBtn}>Ajouter transmission</button>
                      </div>
                     )}
+                </div>
+            )}
+            {indexOngletSelected === 2 && (
+                <div>
+                    <div className={enfantItemStyle.parentsContainer}>
+                        <h3>Parents</h3>
+                        {APIState?.data?.parents?.length != 0 
+                        ? 
+                        (
+                            <div>
+                                {APIState.data.parents.map(parent => (
+                                    <div key={parent.id}>
+                                        <p>{parent.nom} {parent.prenom}</p>
+                                        <ul>
+                                            <li>Profession : <span className={enfantItemStyle.data}>{parent.profession}</span></li>
+                                            <li>Téléphone : <span className={enfantItemStyle.data}>{parent.telephone}</span></li>
+                                        </ul>
+                                    </div>
+                                ))}
+                            </div>
+                        )
+                        :
+                        (<p><span className={enfantItemStyle.data}>Non renseignés</span></p>)
+                        }
+                    </div>
+                    <div className={enfantItemStyle.autorisationsContainer}>
+                        <h3>Autorisations</h3>
+                        <p>Administration d&apos;antipyrétique : <span className={enfantItemStyle.data}>{APIState?.data?.autorisations_parentales?.administration_antipyretique ? (`${APIState.data.autorisations_parentales.administration_antipyretique == 1 ? "Oui" : "Non"}`) : "Non renseignée"}</span></p>
+                        <p>Administration de soins : <span className={enfantItemStyle.data}>{APIState?.data?.autorisations_parentales?.administration_soin ? (`${APIState.data.autorisations_parentales.administration_soin == 1 ? "Oui" : "Non"}`) : "Non renseignée"}</span></p>
+                        <p>Autorisation de sortie : <span className={enfantItemStyle.data}>{APIState?.data?.autorisations_parentales?.autorisation_sortie ? (`${APIState.data.autorisations_parentales.autorisation_sortie == 1 ? "Oui" : "Non"}`) : "Non renseignée"}</span></p>
+                        <p>Prise de photos/vidéos : <span className={enfantItemStyle.data}>{APIState?.data?.autorisations_parentales?.autorisation_photo_video ? (`${APIState.data.autorisations_parentales.autorisation_photo_video == 1 ? "Oui" : "Non"}`) : "Non renseignée"}</span></p>
+                        <p>Maquillage : <span className={enfantItemStyle.data}>{APIState?.data?.autorisations_parentales?.autorisation_maquillage ? (`${APIState.data.autorisations_parentales.autorisation_maquillage == 1 ? "Oui" : "Non"}`) : "Non renseignée"}</span></p>
+                    </div>
+                    <div className={enfantItemStyle.btnAjouterContainer}>
+                        <button onClick={handleClickBtnAjouterAutorisationParentale}>Ajouter une autorisation</button>
+                    </div>
                 </div>
             )}
         </div>
