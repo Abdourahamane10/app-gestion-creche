@@ -25,7 +25,7 @@ export default function EnfantItem() {
     }
 
     function handleClickBtnAjouterAutorisationParentale() {
-        navigate('/addAutorisationParentale', {state: {idEnfant: idEnfant}});
+        navigate('/addAutorisationParentale', {state: {enfant: APIState.data}});
     }
 
     useEffect(() => {
@@ -123,14 +123,14 @@ export default function EnfantItem() {
             {indexOngletSelected === 2 && (
                 <div>
                     <div className={enfantItemStyle.parentsContainer}>
-                        <h3>Parents</h3>
+                        <h3>Parents :</h3>
                         {APIState?.data?.parents?.length != 0 
                         ? 
                         (
                             <div>
                                 {APIState.data.parents.map(parent => (
-                                    <div key={parent.id}>
-                                        <p>{parent.nom} {parent.prenom}</p>
+                                    <div key={parent.id} className={enfantItemStyle.parentItem}>
+                                        <h4>{parent.nom} {parent.prenom}</h4>
                                         <ul>
                                             <li>Profession : <span className={enfantItemStyle.data}>{parent.profession}</span></li>
                                             <li>Téléphone : <span className={enfantItemStyle.data}>{parent.telephone}</span></li>
@@ -144,7 +144,7 @@ export default function EnfantItem() {
                         }
                     </div>
                     <div className={enfantItemStyle.autorisationsContainer}>
-                        <h3>Autorisations</h3>
+                        <h3>Autorisations :</h3>
                         <p>Administration d&apos;antipyrétique : <span className={enfantItemStyle.data}>{APIState?.data?.autorisations_parentales?.administration_antipyretique ? (`${APIState.data.autorisations_parentales.administration_antipyretique == 1 ? "Oui" : "Non"}`) : "Non renseignée"}</span></p>
                         <p>Administration de soins : <span className={enfantItemStyle.data}>{APIState?.data?.autorisations_parentales?.administration_soin ? (`${APIState.data.autorisations_parentales.administration_soin == 1 ? "Oui" : "Non"}`) : "Non renseignée"}</span></p>
                         <p>Autorisation de sortie : <span className={enfantItemStyle.data}>{APIState?.data?.autorisations_parentales?.autorisation_sortie ? (`${APIState.data.autorisations_parentales.autorisation_sortie == 1 ? "Oui" : "Non"}`) : "Non renseignée"}</span></p>
