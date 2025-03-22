@@ -48,7 +48,7 @@
     background-color: var(--info-color);
 }
 
-.repasContainer, .santeContainer, .sortie, .observationContainer, .autorisationsContainer {
+.repasContainer, .santeContainer, .sortie, .observationContainer {
     margin-top: 10px;
 }
 
@@ -75,3 +75,14 @@
     font-weight: 600;
 }
 
+.parentItem {
+    margin-bottom: 10px;
+}
+
+.parentItem li {
+    list-style: none;
+}
+
+.autorisationsContainer {
+    margin-top: 20px;
+}
