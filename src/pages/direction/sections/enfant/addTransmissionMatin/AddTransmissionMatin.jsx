@@ -103,7 +103,7 @@ export default function AddTransmissionMatin() {
                         localStorage.setItem("lastVisitedPage", window.location.pathname);
                         navigate('/');
                     }
-                    throw new Error(data.message || JSON.stringify(data.errors) || "Une erreur est survenue Une erreur est survenue lors de l'enregistrement de la transmission");
+                    throw new Error(data.message || JSON.stringify(data.errors) || "Une erreur est survenue lors de l'enregistrement de la transmission");
                 }
                 return data;
             });
