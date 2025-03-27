@@ -123,7 +123,7 @@ export default function EnfantItem() {
             {indexOngletSelected === 2 && (
                 <div>
                     <div className={enfantItemStyle.parentsContainer}>
-                        <h3>Parent ayant donné l&apos;autorisation :</h3>
+                        <h3>Parent ayant donné les autorisation :</h3>
                         {APIState?.data?.autorisations_parentales?.id_Parent 
                         ? 
                         (
