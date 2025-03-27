@@ -123,25 +123,56 @@ export default function EnfantItem() {
             {indexOngletSelected === 2 && (
                 <div>
                     <div className={enfantItemStyle.parentsContainer}>
-                        <h3>Parents :</h3>
-                        {APIState?.data?.parents?.length != 0 
+                        <h3>Parent ayant donné l&apos;autorisation :</h3>
+                        {APIState?.data?.autorisations_parentales?.id_Parent 
                         ? 
                         (
-                            <div>
-                                {APIState.data.parents.map(parent => (
-                                    <div key={parent.id} className={enfantItemStyle.parentItem}>
-                                        <h4>{parent.nom} {parent.prenom}</h4>
-                                        <ul>
-                                            <li>Profession : <span className={enfantItemStyle.data}>{parent.profession}</span></li>
-                                            <li>Téléphone : <span className={enfantItemStyle.data}>{parent.telephone}</span></li>
-                                        </ul>
-                                    </div>
-                                ))}
+                            <div className={enfantItemStyle.parentItem}>
+                                <ul>
+                                    <li>
+                                        Nom : <span className={enfantItemStyle.data}>{APIState?.data?.parents?.find(parent => parent.id === APIState.data.autorisations_parentales.id_Parent)?.nom || "Non renseigné"}</span>
+                                    </li>
+                                    <li>
+                                        Prénom : <span className={enfantItemStyle.data}>{APIState?.data?.parents?.find(parent => parent.id === APIState.data.autorisations_parentales.id_Parent)?.prenom}</span>
+                                    </li>
+                                    <li>
+                                        Profession : <span className={enfantItemStyle.data}>{APIState?.data?.parents?.find(parent => parent.id === APIState.data.autorisations_parentales.id_Parent)?.profession || "Non renseigné"}</span>
+                                    </li>
+                                    <li>
+                                        Téléphone : <span className={enfantItemStyle.data}>{APIState?.data?.parents?.find(parent => parent.id === APIState.data.autorisations_parentales.id_Parent)?.telephone || "Non renseigné"}</span>
+                                    </li>
+                                </ul>
                             </div>
                         )
                         :
                         (<p><span className={enfantItemStyle.data}>Non renseignés</span></p>)
                         }
+                    </div>
+                    <div className={enfantItemStyle.reprsentantEnfantContainer}> 
+                        <h3>Personnes autorisées à récupérer l&apos;enfant :</h3>
+                        {APIState?.data?.parents?.map(parent => (
+                                    <div key={parent.id} className={enfantItemStyle.representantItem}>
+                                        <h4>{parent.nom} {parent.prenom}</h4>
+                                        <p>Date de naissance : {parent.dateNaissance != null ? <span className={enfantItemStyle.data}>{new Date(parent.dateNaissance).toLocaleDateString("fr-FR")}</span> : "Non renseigné"}</p>
+                                        <p>Lien parenté : <span className={enfantItemStyle.data}>Parent</span></p>
+                                        <p>Téléphone : {parent.telephone != null ? (<span className={enfantItemStyle.data}>parent.telephone</span>) : "Non renseigné"}</p>
+                                    </div>
+                        ))}
+                        {APIState?.data?.representants_legaux.length > 0 && (
+                            <div>
+                                {APIState?.data?.representants_legaux.map(personne => (
+                                    <div key={personne.id} className={enfantItemStyle.representantItem}>
+                                        <h4>{personne.nom} {personne.prenom}</h4>
+                                        <p>Date de naissance : {personne?.dateNaissance != null ? (<span className={enfantItemStyle.data}>{personne.dateNaissance}</span>) : "Non renseigné"}</p>
+                                        <p>Lien parenté : {personne?.lien_parente != null ? (<span className={enfantItemStyle.data}>{personne.lien_parente}</span>) : "Non renseigné"}</p>
+                                        <p>Téléphone : {personne?.telephone != null ? (<span className={enfantItemStyle.data}>{personne.telephone}</span>) : "Non renseigné"}</p>
+                                    </div>
+                                ))}
+                            </div>)
+                        }
+                        {(APIState?.data?.parents?.length == 0 && APIState?.data?.representants_legaux?.length == 0) && (
+                            <p className={enfantItemStyle.data}>Aucun</p>
+                        )}
                     </div>
                     <div className={enfantItemStyle.autorisationsContainer}>
                         <h3>Autorisations :</h3>
