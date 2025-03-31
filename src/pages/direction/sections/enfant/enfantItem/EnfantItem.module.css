@@ -61,12 +61,12 @@
     width: 100%;
 }
 
-.btnAjouterContainer {
+.btnAjouterContainer, btnModifierContainer {
     display: flex;
     justify-content: center;
 }
 
-.btnAjouterContainer button {
+.btnAjouter {
     background-color: var(--primary-color);
 }
 
@@ -89,4 +89,10 @@
 
 .representantItem:not(:last-child) {
     margin-bottom: 5px;
+}
+
+.btnsContainer {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
