@@ -28,6 +28,10 @@ export default function EnfantItem() {
         navigate('/addAutorisationParentale', {state: {enfant: APIState.data}});
     }
 
+    function handleClickBtnModifierTransmission() {
+        navigate('/updateTransmissionMatin', {state: {enfant: APIState.data}});
+    }
+
     useEffect(() => {
         setAPIState({loading: true, error: false, data: undefined});
         fetch(`${import.meta.env.VITE_APP_SERV}/api/enfant/${idEnfant}`, {
@@ -113,10 +117,20 @@ export default function EnfantItem() {
                         <h3>Observation</h3>
                         <p><span className={enfantItemStyle.data}>{APIState?.data?.transmissionMatin?.observation ? APIState?.data?.transmissionMatin?.observation : "Pas d'observation"}</span></p>
                     </div>
-                    {(codeUser == "AP" || codeUser == "IN" || codeUser == "EJ" || codeUser == "AE") && (
-                        <div className={enfantItemStyle.btnAjouterContainer}>
-                        <button onClick={handleClickAjouterTransmissionBtn}>Ajouter transmission</button>
-                     </div>
+                    {console.log("Bouton Ajouter visible ?", APIState?.data?.transmissionMatin == null)}
+                    {(codeUser != "AP" || codeUser == "IN" || codeUser == "EJ" || codeUser == "AE") && (
+                        <div className={enfantItemStyle.btnsContainer}>
+                            {!APIState?.data?.transmissionMatin && (
+                                <div className={enfantItemStyle.btnAjouterContainer}>
+                                   <button className={enfantItemStyle.btnAjouter} onClick={handleClickAjouterTransmissionBtn}>Ajouter transmission</button>
+                                </div>
+                            )}
+                            {APIState?.data?.transmissionMatin && (
+                                <div className={enfantItemStyle.btnModifierContainer}>
+                                    <button className={enfantItemStyle.btnModifier} onClick={handleClickBtnModifierTransmission}>Modifier transmission</button>
+                                </div>
+                            )}
+                        </div>
                     )}
                 </div>
             )}
