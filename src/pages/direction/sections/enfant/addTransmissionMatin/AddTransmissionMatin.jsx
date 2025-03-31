@@ -2,8 +2,8 @@ import { useState } from "react"
 import { useSelector } from "react-redux"
 import { useLocation, useNavigate } from "react-router-dom";
 
-import addTransmissionMatinStyle from './AddTransmissionMatin.module.css';
 import indexStyle from '../../../../../index.module.css';
+import transmissionStyleCommun from '../TransmissionStyleCommun.module.css';
 
 export default function AddTransmissionMatin() {
     const token = useSelector(state => state.auth.token);
@@ -132,31 +132,31 @@ export default function AddTransmissionMatin() {
 
   return (
     <>
-        <h3 className={addTransmissionMatinStyle.title}>Ajout d&apos;une transmission matinale</h3>
+        <h3 className={transmissionStyleCommun.title}>Ajout d&apos;une transmission matinale</h3>
         <form onSubmit={handleSubmit}>
-            <div className={addTransmissionMatinStyle.inputContainer}>
+            <div className={transmissionStyleCommun.inputContainer}>
                 <label htmlFor="heureReveil">Heure du réveil</label>
                 <input id="heureReveil" name="heureReveil" value={transmissionValues.heureReveil} type="time" onChange={handleChangeTransmissionValues} />
             </div>
-            <div className={`${addTransmissionMatinStyle.inputContainer} ${addTransmissionMatinStyle.optionsPriseRepas}`}>
+            <div className={`${transmissionStyleCommun.inputContainer} ${transmissionStyleCommun.optionsPriseRepas}`}>
                 <label>Prise de repas : </label>
                 {optionsPriseRepas.map((option) => (
-                    <div key={option} className={addTransmissionMatinStyle.optionPriseRepas}>
+                    <div key={option} className={transmissionStyleCommun.optionPriseRepas}>
                         <label htmlFor={option}>{option}</label>
                         <input id={option} name="priseRepas" type="radio" value={option} onChange={handleChangeTransmissionChecks} />
                     </div>
                 ))}
                 {alerte.alertePriseRepas && (
-                    <p className={addTransmissionMatinStyle.messageAlerte}>Un des champs doit être sélectionné</p>
+                    <p className={transmissionStyleCommun.messageAlerte}>Un des champs doit être sélectionné</p>
                 )}
             </div>
             {transmissionChecks.priseRepas === "oui" && (
-                <div className={addTransmissionMatinStyle.inputContainer}>
+                <div className={transmissionStyleCommun.inputContainer}>
                     <label htmlFor="quantite">Quantité du biberon</label>
                     <input id="quantite" name="quantiteBiberon" value={transmissionValues.quantiteBiberon} type="number" min={0} onChange={handleChangeTransmissionValues} />
                 </div>
             )}
-            <div className={`${addTransmissionMatinStyle.inputContainer} ${addTransmissionMatinStyle.optionsBonneSante}`}>
+            <div className={`${transmissionStyleCommun.inputContainer} ${transmissionStyleCommun.optionsBonneSante}`}>
                 <label>En bonne santé : </label>
                 {optionsBonneSante.map((option) => (
                     <div key={option}>
@@ -165,26 +165,26 @@ export default function AddTransmissionMatin() {
                     </div>
                 ))}
                 {alerte.alerteBonneSante && (
-                    <p className={addTransmissionMatinStyle.messageAlerte}>Un des champs doit être sélectionné</p>
+                    <p className={transmissionStyleCommun.messageAlerte}>Un des champs doit être sélectionné</p>
                 )}
             </div>
             {transmissionChecks.bonneSante === "non" && (
-                <div className={addTransmissionMatinStyle.inputContainer}>
+                <div className={transmissionStyleCommun.inputContainer}>
                     <label htmlFor="doliprane">Doliprane</label>
                     <input id="doliprane" type="checkbox" name="priseDoliprane" checked={transmissionChecks.priseDoliprane} onChange={handleChangeTransmissionChecks} />
                 </div>
             )}
             {(transmissionChecks.bonneSante === "non" && transmissionChecks.priseDoliprane) && (
-                <div className={addTransmissionMatinStyle.inputContainer}>
+                <div className={transmissionStyleCommun.inputContainer}>
                     <label htmlFor="heurePriseDoliprane">Heure de prise du doliprane</label>
                     <input id="heurePriseDoliprane" type="time" name="heurePriseDoliprane" value={transmissionValues.heurePriseDoliprane} onChange={handleChangeTransmissionValues} />
                 </div>
             )}
-            <div className={addTransmissionMatinStyle.inputContainer}>
+            <div className={transmissionStyleCommun.inputContainer}>
                 <label htmlFor="observation">Observation</label>
                 <textarea id="observation" name="observation" value={transmissionValues.observation} onChange={handleChangeTransmissionValues} placeholder="Observation..."></textarea>
             </div>
-            <div className={addTransmissionMatinStyle.inputContainer}>
+            <div className={transmissionStyleCommun.inputContainer}>
                 <label htmlFor="parent">Parent auteur de la transmission</label>
                 <select id="parent" value={idParentSelected} onChange={handleParentChange}>
                     <option value="" disabled> Sélectiionnez le parent auteur de  la transmission</option>
@@ -192,18 +192,18 @@ export default function AddTransmissionMatin() {
                         <option key={parent.id} value={parent.id}>{parent.nom} {parent.prenom}</option>
                     ))}
                 </select>
-                {(parentsOfEnfant === null || parentsOfEnfant.length == 0) && (
-                    <p className={addTransmissionMatinStyle.messageAlerte}>Veuillez créer d&apos;abord le(s) parent(s)</p>
+                {(parentsOfEnfant === null || parentsOfEnfant?.length == 0) && (
+                    <p className={transmissionStyleCommun.messageAlerte}>Veuillez créer d&apos;abord le(s) parent(s)</p>
                 )}
             </div>
             <div>
                 <label htmlFor="employe">Professionnelle</label>
                 <input id="employe" type="text" value={`${userConnected.nomEmploye} ${userConnected.prenomEmploye}`} disabled />
             </div>
-            <div className={addTransmissionMatinStyle.btnContainer}>
-                <button type="submit" disabled={parentsOfEnfant === null || parentsOfEnfant.length == 0} 
+            <div className={transmissionStyleCommun.btnContainer}>
+                <button type="submit" disabled={parentsOfEnfant === null || parentsOfEnfant?.length == 0} 
                     style={{
-                    cursor: `${parentsOfEnfant === null || parentsOfEnfant.length == 0 ? "not-allowed" : "pointer"}`
+                    cursor: `${parentsOfEnfant === null || parentsOfEnfant?.length == 0 ? "not-allowed" : "pointer"}`
                     }}>
                     {APIState.loading && (<img className={indexStyle.spinner} style={{ color: "gray" }} src="/icones/spinner.svg" />)}
                     Valider
