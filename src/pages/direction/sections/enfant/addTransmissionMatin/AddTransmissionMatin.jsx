@@ -205,7 +205,7 @@ export default function AddTransmissionMatin() {
                     style={{
                     cursor: `${parentsOfEnfant === null || parentsOfEnfant?.length == 0 ? "not-allowed" : "pointer"}`
                     }}>
-                    {APIState.loading && (<img className={indexStyle.spinner} style={{ color: "gray" }} src="/icones/spinner.svg" />)}
+                    {APIState.loading && (<img className={indexStyle.spinner} style={{ color: "gray", width: '15px', height: '15px' }} src="/icones/spinner.svg" />)}
                     Valider
                 </button>
             </div>
