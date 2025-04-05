@@ -29,7 +29,7 @@ export default function EnfantItem() {
     }
 
     function handleClickBtnModifierTransmission() {
-        navigate('/updateTransmissionMatin', {state: {enfant: APIState.data}});
+        navigate(`/updateTransmissionMatin?idEnfant=${APIState.data.id}`, {state: {enfant: APIState.data}});
     }
 
     useEffect(() => {
