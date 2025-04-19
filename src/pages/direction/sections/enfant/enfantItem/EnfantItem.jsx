@@ -32,6 +32,10 @@ export default function EnfantItem() {
         navigate(`/updateTransmissionMatin?idEnfant=${APIState.data.id}`, {state: {enfant: APIState.data}});
     }
 
+    function handleClickBtnModifierAutorisationParentale() {
+        
+    }
+
     useEffect(() => {
         setAPIState({loading: true, error: false, data: undefined});
         fetch(`${import.meta.env.VITE_APP_SERV}/api/enfant/${idEnfant}`, {
@@ -168,7 +172,7 @@ export default function EnfantItem() {
                                         <h4>{parent.nom} {parent.prenom}</h4>
                                         <p>Date de naissance : {parent.dateNaissance != null ? <span className={enfantItemStyle.data}>{new Date(parent.dateNaissance).toLocaleDateString("fr-FR")}</span> : "Non renseigné"}</p>
                                         <p>Lien parenté : <span className={enfantItemStyle.data}>Parent</span></p>
-                                        <p>Téléphone : {parent.telephone != null ? (<span className={enfantItemStyle.data}>parent.telephone</span>) : "Non renseigné"}</p>
+                                        <p>Téléphone : {parent.telephone != null ? (<span className={enfantItemStyle.data}>{parent.telephone}</span>) : "Non renseigné"}</p>
                                     </div>
                         ))}
                         {APIState?.data?.representants_legaux.length > 0 && (
@@ -195,8 +199,17 @@ export default function EnfantItem() {
                         <p>Prise de photos/vidéos : <span className={enfantItemStyle.data}>{(APIState?.data?.autorisations_parentales?.autorisation_photo_video == 1) || (APIState?.data?.autorisations_parentales?.autorisation_photo_video == 0) ? (`${APIState.data.autorisations_parentales.autorisation_photo_video == 1 ? "Oui" : "Non"}`) : "Non renseignée"}</span></p>
                         <p>Maquillage : <span className={enfantItemStyle.data}>{(APIState?.data?.autorisations_parentales?.autorisation_maquillage == 1) || (APIState?.data?.autorisations_parentales?.autorisation_maquillage == 0) ? (`${APIState.data.autorisations_parentales.autorisation_maquillage == 1 ? "Oui" : "Non"}`) : "Non renseignée"}</span></p>
                     </div>
-                    <div className={enfantItemStyle.btnAjouterContainer}>
-                        <button onClick={handleClickBtnAjouterAutorisationParentale}>Ajouter une autorisation</button>
+                    <div className={enfantItemStyle.btnsContainer}>
+                        {!APIState.data?.autorisations_parentales && 
+                            <div className={enfantItemStyle.btnAjouterContainer}>
+                            <button className={enfantItemStyle.btnAjouter} onClick={handleClickBtnAjouterAutorisationParentale}>Ajouter une autorisation</button>
+                            </div>
+                        }
+                        {APIState.data?.autorisations_parentales && 
+                            <div className={enfantItemStyle.btnModifierContainer}>
+                               <button className={enfantItemStyle.btnModifier} onClick={handleClickBtnModifierAutorisationParentale}>Modifier</button>
+                            </div>
+                        }
                     </div>
                 </div>
             )}
