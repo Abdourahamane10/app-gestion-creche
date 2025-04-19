@@ -117,7 +117,6 @@ export default function EnfantItem() {
                         <h3>Observation</h3>
                         <p><span className={enfantItemStyle.data}>{APIState?.data?.transmissionMatin?.observation ? APIState?.data?.transmissionMatin?.observation : "Pas d'observation"}</span></p>
                     </div>
-                    {console.log("Bouton Ajouter visible ?", APIState?.data?.transmissionMatin == null)}
                     {(codeUser != "AP" || codeUser == "IN" || codeUser == "EJ" || codeUser == "AE") && (
                         <div className={enfantItemStyle.btnsContainer}>
                             {!APIState?.data?.transmissionMatin && (
