@@ -61,7 +61,7 @@
     width: 100%;
 }
 
-.btnAjouterContainer, btnModifierContainer {
+.btnAjouterContainer, .btnModifierContainer {
     display: flex;
     justify-content: center;
 }
