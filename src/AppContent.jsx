@@ -20,6 +20,7 @@ import EnfantItem from "./pages/direction/sections/enfant/enfantItem/EnfantItem"
 import AddTransmissionMatin from "./pages/direction/sections/enfant/addTransmissionMatin/AddTransmissionMatin"
 import AddAutorisationParentale from "./pages/direction/sections/enfant/addAutorisationParentale/AddAutorisationParentale"
 import UpdateTransmissionMatin from "./pages/direction/sections/enfant/updateTransmissionMatin/UpdateTransmissionMatin"
+import UpdateAutorisationParentale from "./pages/direction/sections/enfant/updateAutorisationParentale/UpdateAutorisationParentale"
 
 export default function AppContent() {
     const codeUser = useSelector(state => state.auth.codeUser);
@@ -56,6 +57,7 @@ export default function AppContent() {
               <Route path="/addTransmissionMatin" element={<AddTransmissionMatin />} />
               <Route path="/addAutorisationParentale" element={<AddAutorisationParentale />} />
               <Route path="/updateTransmissionMatin" element={<UpdateTransmissionMatin />} />
+              <Route path="/updateAutorisationParentale" element={<UpdateAutorisationParentale />} />
             </Routes>
           </main>
           <Footer />
