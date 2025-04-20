@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 // import { parseISO, utcToZonedTime } from "date-fns-tz";
 
@@ -18,7 +18,9 @@ export default function EnfantItem() {
     });
     const [messageToDisplay, setMessageToDisplay] = useState("");
     const codeUser = useSelector(state => state.auth.codeUser);
-    const [indexOngletSelected, setIndexOngletSelected] = useState(0);
+    const [searchParams, setSearchParams] = useSearchParams();
+    const defaultIndexOnglet = Number(searchParams.get('indexOngletSelected'));
+    const [indexOngletSelected, setIndexOngletSelected] = useState(defaultIndexOnglet || 0);
 
     function handleClickAjouterTransmissionBtn() {
         navigate('/addTransmissionMatin', {state: {enfant: APIState.data}});
@@ -33,10 +35,12 @@ export default function EnfantItem() {
     }
 
     function handleClickBtnModifierAutorisationParentale() {
-        
+        navigate(`/updateAutorisationParentale?idEnfant=${APIState.data.id}, {state: {enfant: APIState.data}}`);
     }
 
     useEffect(() => {
+        searchParams.set('indexOngletSelected', indexOngletSelected);
+        setSearchParams(searchParams);
         setAPIState({loading: true, error: false, data: undefined});
         fetch(`${import.meta.env.VITE_APP_SERV}/api/enfant/${idEnfant}`, {
             method: 'GET',
@@ -49,7 +53,10 @@ export default function EnfantItem() {
             if(!response.ok) {
                 if(response.status === 401) {
                     // Sauvegarder la dernière route visitée avant déconnexion automatique (si déconnexion automatique)
-                    localStorage.setItem("lastVisitedPage", window.location.pathname);
+                    searchParams.set('indexOngletSelected', indexOngletSelected);
+                    ///On met à jour l'url
+                    setSearchParams(searchParams);
+                    localStorage.setItem("lastVisitedPage", `${location.pathname}${location.search}`);
                     navigate("/");
                 }
                 return response.json().then(messageError => {
@@ -69,7 +76,7 @@ export default function EnfantItem() {
                 setMessageToDisplay("");
             }, 7000);
         })
-    }, [token, navigate, idEnfant]);
+    }, [token, navigate, idEnfant, searchParams, setSearchParams, indexOngletSelected]);
 
   return (
     <>
@@ -207,7 +214,7 @@ export default function EnfantItem() {
                         }
                         {APIState.data?.autorisations_parentales && 
                             <div className={enfantItemStyle.btnModifierContainer}>
-                               <button className={enfantItemStyle.btnModifier} onClick={handleClickBtnModifierAutorisationParentale}>Modifier</button>
+                               <button className={enfantItemStyle.btnModifier} onClick={handleClickBtnModifierAutorisationParentale}>Modifier les autorisations</button>
                             </div>
                         }
                     </div>
