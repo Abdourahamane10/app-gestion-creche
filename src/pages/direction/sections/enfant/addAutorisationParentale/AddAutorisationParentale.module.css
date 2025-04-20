@@ -1,0 +1,37 @@
+.title {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.btnAjouterContainer {
+    display: flex;
+    align-items: center;
+}
+
+.btnAjouter {
+    margin-left: auto;
+    margin-top: 20px;
+    background-color: var(--success-color);
+}
+
+.messageError {
+    color: var(--danger-color);
+}
+
+.soinsContainer, .sortiesContainer, .imageContainer, .antipyretiqueContainer, .maquillageContainer {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.soinsContainer input, .sortiesContainer input, .imageContainer input, .antipyretiqueContainer input, .maquillageContainer input {
+    align-self: center;
+}
+
+.messageToDisplayContainer{
+    background-color: var(--danger-color);
+}
+
+.messageToDisplayContainer p {
+    color: var(--light-color);
+}
