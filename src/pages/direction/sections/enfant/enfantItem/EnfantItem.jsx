@@ -111,18 +111,18 @@ export default function EnfantItem() {
                 <div>
                     <div className={enfantItemStyle.reveilContainer}>
                         <h3>Réveil</h3>
-                        <p>Heure de réveil : <span className={enfantItemStyle.data}>{APIState?.data?.transmissionMatin?.heure_reveil ? APIState.data.transmissionMatin.heure_reveil?.slice(0, 5) : "Non renseignée"}</span></p>
+                        <p>⌚ : <span className={enfantItemStyle.data}>{APIState?.data?.transmissionMatin?.heure_reveil ? APIState.data.transmissionMatin.heure_reveil?.slice(0, 5) : "Non renseignée"}</span></p>
                     </div>
                     <div className={enfantItemStyle.repasContainer}>
                         <h3>Répas</h3>
                         <p>Prise de répas : <span className={enfantItemStyle.data}>{APIState?.data?.transmissionMatin?.prise_de_repas == 1 ? "Oui" : (APIState?.data?.transmissionMatin?.prise_de_repas == 0 ? "Non" : "Non renseigné")}</span></p>
-                        <p>Biberon : <span className={enfantItemStyle.data}>{APIState?.data?.transmissionMatin?.quantite_biberon ? `${APIState?.data?.transmissionMatin?.quantite_biberon} ml` : "Non renseigné"}</span></p>
+                        <p>🍼 : <span className={enfantItemStyle.data}>{APIState?.data?.transmissionMatin?.quantite_biberon ? `${APIState?.data?.transmissionMatin?.quantite_biberon} ml` : "Non renseigné"}</span></p>
                     </div>
                     <div className={enfantItemStyle.santeContainer}>
                         <h3>Santé</h3>
                         <p>État de santé : <span className={enfantItemStyle.data}>{APIState?.data?.transmissionMatin?.bonne_sante == 1 ? "Bon" : (APIState?.data?.transmissionMatin?.bonne_sante == 0 ? "Mauvais" : "Non renseigné")}</span></p>
                         <p>Doliprane : <span className={enfantItemStyle.data}>{APIState?.data?.transmissionMatin?.doliprane ? "Oui" : "Non"}</span></p>
-                        <p>Heure de prise du doliprane : <span className={enfantItemStyle.data}>{APIState?.data?.transmissionMatin?.heure_prise_doliprane ? APIState.data.transmissionMatin.heure_prise_doliprane.slice(0, 5) : "Non renseignée"}</span></p>
+                        <p>⌚ : <span className={enfantItemStyle.data}>{APIState?.data?.transmissionMatin?.heure_prise_doliprane ? APIState.data.transmissionMatin.heure_prise_doliprane.slice(0, 5) : "Non renseignée"}</span></p>
                     </div>
                     <div className={enfantItemStyle.observationContainer}>
                         <h3>Observation</h3>
