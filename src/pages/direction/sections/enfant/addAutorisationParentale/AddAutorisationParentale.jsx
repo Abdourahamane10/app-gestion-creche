@@ -12,7 +12,7 @@ export default function AddAutorisationParentale() {
   const queryParams = new URLSearchParams(location.search);
   const idEnfant = queryParams.get('idEnfant');
   console.log("idEnfant :", idEnfant);
-  if(enfant != null) {
+  if(enfant == null) {
     fetch(`${import.meta.env.VITE_APP_SERV}/api/enfant/${idEnfant}`, {
       method: 'GET',
       headers: {
