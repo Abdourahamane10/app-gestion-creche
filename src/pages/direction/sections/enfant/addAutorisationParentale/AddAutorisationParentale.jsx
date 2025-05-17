@@ -8,8 +8,40 @@ import indexStyle from '../../../../../index.module.css';
 export default function AddAutorisationParentale() {
   const token = useSelector(state => state.auth.token);
   const location = useLocation();
-  const enfant = location?.state?.enfant;
-  const parentsOfEnfant = enfant?.parents;
+  let enfant = location?.state?.enfant;
+  const queryParams = new URLSearchParams(location.search);
+  const idEnfant = queryParams.get('idEnfant');
+  console.log("idEnfant :", idEnfant);
+  if(enfant != null) {
+    fetch(`${import.meta.env.VITE_APP_SERV}/api/enfant/${idEnfant}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    .then(response => {
+      return response.json().then(data => {
+        if(!response.ok) {
+          if(response.status == 401) {
+            // Sauvegarder la dernière route visitée avant déconnexion automatique (si déconnexion automatique)
+            localStorage.setItem("lastVisitedPage", window.location.pathname);
+            navigate('/');
+          }
+          throw new Error(JSON.stringify(data.errors) || data.message || "Erreur du serveur");
+        }
+        return data;
+      })
+    })
+    .then(responseData => {
+      enfant = responseData.data;
+    })
+    .catch((error) => {
+      console.log("erreur :", error);
+      navigate('/');
+    })
+  }
+  let parentsOfEnfant = enfant?.parents;
   const [idParentSelected, setIdParentSelected] = useState("");
   const [autorisations, setAutorisations] = useState({
     soins: false,
