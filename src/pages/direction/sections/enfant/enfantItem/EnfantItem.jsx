@@ -23,11 +23,11 @@ export default function EnfantItem() {
     const [indexOngletSelected, setIndexOngletSelected] = useState(defaultIndexOnglet || 0);
 
     function handleClickAjouterTransmissionBtn() {
-        navigate('/addTransmissionMatin', {state: {enfant: APIState.data}});
+        navigate(`/addTransmissionMatin?idEnfant=${APIState.data.id}`, {state: {enfant: APIState.data}});
     }
 
     function handleClickBtnAjouterAutorisationParentale() {
-        navigate('/addAutorisationParentale', {state: {enfant: APIState.data}});
+        navigate(`/addAutorisationParentale?idEnfant=${APIState.data.id}`, {state: {enfant: APIState.data}});
     }
 
     function handleClickBtnModifierTransmission() {
@@ -35,7 +35,7 @@ export default function EnfantItem() {
     }
 
     function handleClickBtnModifierAutorisationParentale() {
-        navigate(`/updateAutorisationParentale?idEnfant=${APIState.data.id}, {state: {enfant: APIState.data}}`);
+        navigate(`/updateAutorisationParentale?idEnfant=${APIState.data.id}`, {state: {enfant: APIState.data}});
     }
 
     useEffect(() => {
