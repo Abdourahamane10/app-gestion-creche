@@ -4,43 +4,16 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import addAutorisationParentaleStyle from './AddAutorisationParentale.module.css';
 import indexStyle from '../../../../../index.module.css';
+import useGetEnfant from "../../../../../utils/appelsAPI/APIsEnfant";
 
 export default function AddAutorisationParentale() {
   const token = useSelector(state => state.auth.token);
   const location = useLocation();
-  let enfant = location?.state?.enfant;
   const queryParams = new URLSearchParams(location.search);
   const idEnfant = queryParams.get('idEnfant');
-  console.log("idEnfant :", idEnfant);
-  if(enfant == null) {
-    fetch(`${import.meta.env.VITE_APP_SERV}/api/enfant/${idEnfant}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      }
-    })
-    .then(response => {
-      return response.json().then(data => {
-        if(!response.ok) {
-          if(response.status == 401) {
-            // Sauvegarder la dernière route visitée avant déconnexion automatique (si déconnexion automatique)
-            localStorage.setItem("lastVisitedPage", window.location.pathname);
-            navigate('/');
-          }
-          throw new Error(JSON.stringify(data.errors) || data.message || "Erreur du serveur");
-        }
-        return data;
-      })
-    })
-    .then(responseData => {
-      enfant = responseData.data;
-    })
-    .catch((error) => {
-      console.log("erreur :", error);
-      navigate('/');
-    })
-  }
+  const enfantLocal = location?.state?.enfant;
+  const resultAPIGetEnfant = useGetEnfant(enfantLocal, idEnfant);
+  const enfant = enfantLocal || resultAPIGetEnfant.data;
   let parentsOfEnfant = enfant?.parents;
   const [idParentSelected, setIdParentSelected] = useState("");
   const [autorisations, setAutorisations] = useState({
