@@ -38,6 +38,10 @@ export default function EnfantItem() {
         navigate(`/updateAutorisationParentale?idEnfant=${APIState.data.id}`, {state: {enfant: APIState.data}});
     }
 
+    function handleUpdateEnfantInformations() {
+        navigate(`/updateInfosEnfant?idEnfant=${APIState.data.id}`, {state: {enfant: APIState.data}});
+    }
+
     useEffect(() => {
         searchParams.set('indexOngletSelected', indexOngletSelected);
         setSearchParams(searchParams);
@@ -224,7 +228,7 @@ export default function EnfantItem() {
         {
             ((codeUser == "DR") || (codeUser == "DA")) && (
                 <div className={enfantItemStyle.btnEnfantContainer}>
-                    <button className={`${enfantItemStyle.btnEnfantItem} ${enfantItemStyle.btnModifier}`}>Modifier infos enfant</button>
+                    <button className={`${enfantItemStyle.btnEnfantItem} ${enfantItemStyle.btnModifier}`} onClick={handleUpdateEnfantInformations}>Modifier infos enfant</button>
                     <button className={`${enfantItemStyle.btnEnfantItem} ${enfantItemStyle.btnChangerSection}`}>Changer l&apos;enfant de section</button>
                     <button className={`${enfantItemStyle.btnEnfantItem} ${enfantItemStyle.btnSupprimer}`}>Supprimer enfant</button>
                 </div>
