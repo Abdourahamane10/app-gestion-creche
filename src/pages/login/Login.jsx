@@ -49,13 +49,13 @@ export default function Login() {
     .then(response => {
       if(!response.ok){
         if(response.status == 400){
-          throw Error("Identifiant de la société ou code du service manquant!");
+          throw Error("Identifiant de la société ou code du service incorrecte!");
         }
         else if(response.status == 401){
           throw Error("Société inconnue!");
         }
         else if(response.status == 500){
-          throw Error("Echec de la connexion à la base de données!");
+          throw Error("Connexion à la base de données échouée!");
         }
         else {
           throw Error(`${response.status}`);

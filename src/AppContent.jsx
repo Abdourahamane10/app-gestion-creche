@@ -22,6 +22,7 @@ import AddAutorisationParentale from "./pages/direction/sections/enfant/addAutor
 import UpdateTransmissionMatin from "./pages/direction/sections/enfant/updateTransmissionMatin/UpdateTransmissionMatin"
 import UpdateAutorisationParentale from "./pages/direction/sections/enfant/updateAutorisationParentale/UpdateAutorisationParentale"
 import UpdateInfosEnfant from "./pages/direction/sections/enfant/updateInfosEnfant/UpdateInfosEnfant"
+import { profils } from "./Enums/profilesUtilisateur"
 
 export default function AppContent() {
     const codeUser = useSelector(state => state.auth.codeUser);
@@ -45,7 +46,7 @@ export default function AppContent() {
             <Routes>
               <Route path="/" element={<Login/>}/>
               <Route path="/login" element={<LoginPersonnel/>}/>
-              <Route path="/accueil" element={((codeUser == "DR" || codeUser == "DA") && (<HomeDirection />)) || ((codeUser == "AP" || codeUser == "IN" || codeUser == "EJ" || codeUser == "AE") && (<HomeProfessionnel />))} />
+              <Route path="/accueil" element={((codeUser == profils.DIRECTRICE || codeUser == profils.DIRECTRICE_ADJOINTE) && (<HomeDirection />)) || ((codeUser == profils.AUXILIAIRE_PERICULTURE || codeUser == profils.INFIRMIER || codeUser == profils.EDUCATRICE_JEUNE_ENFANT || codeUser == profils.ANIMATRICE_EVEIL) && (<HomeProfessionnel />))} />
               <Route path="updatePresentation" element={<UpdatePresentation />} />
               <Route path="updateProjetPedagogique" element={<UpdateProjetPedagogique />} />
               <Route path="updateReglement" element={<UpdateReglement />} />

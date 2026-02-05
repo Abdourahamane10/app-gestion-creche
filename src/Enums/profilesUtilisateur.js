@@ -1,0 +1,10 @@
+// Enum simulé
+export const profils = {
+  ANIMATRICE_EVEIL: 'AE',
+  AUXILIAIRE_PERICULTURE: 'AP',
+  DIRECTRICE: 'DR',
+  DIRECTRICE_ADJOINTE: 'DA',
+  EDUCATRICE_JEUNE_ENFANT: 'EJ',
+  INFIRMIER: 'IN',
+  PARENT: 'PA'
+};
